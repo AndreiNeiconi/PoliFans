@@ -1,34 +1,47 @@
 <div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-sm mb-4 border-0">
-                <div class="card-body">
-                    <textarea class="form-control mb-2"
-                        placeholder="Share your project or ask a question..."></textarea>
-                    <button class="btn btn-polifans float-end">Post</button>
+        <div class="col-lg-7 col-md-10">
+
+            <div class="pf-card p-3 mb-4 d-flex align-items-center gap-3">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User" class="rounded-circle" width="45">
+                <button class="btn btn-light flex-grow-1 text-start rounded-pill px-4 text-muted">
+                    What are you working on, Andrei?
+                </button>
+            </div>
+
+            <div class="pf-card mb-4 overflow-hidden">
+                <div class="p-3 d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="rounded-circle"
+                            width="40">
+                        <div>
+                            <h6 class="mb-0 fw-bold">Felix Radu</h6>
+                            <small class="text-muted">Automotive Design • 15m ago</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-link text-dark"><i class="bi bi-three-dots"></i></button>
+                </div>
+
+                <div class="px-3 pb-3">
+                    <p>Check out my latest 3D render for the Propulsion Systems exam. I've attached the .blend file
+                        below for anyone interested! 🚀</p>
+                    <div class="post-attachment p-4 rounded bg-light border d-flex align-items-center gap-3">
+                        <i class="bi bi-file-earmark-zip-fill fs-2 text-primary"></i>
+                        <div>
+                            <div class="fw-bold">Exam_Project_v2.zip</div>
+                            <small class="text-muted">14.5 MB</small>
+                        </div>
+                        <button class="btn btn-polifans btn-sm ms-auto">Download</button>
+                    </div>
+                </div>
+
+                <div class="p-2 border-top d-flex justify-content-around">
+                    <button class="btn btn-hover flex-grow-1"><i class="bi bi-heart me-2"></i> Like</button>
+                    <button class="btn btn-hover flex-grow-1"><i class="bi bi-chat-left me-2"></i> Comment</button>
+                    <button class="btn btn-hover flex-grow-1"><i class="bi bi-share me-2"></i> Share</button>
                 </div>
             </div>
 
-            <div class="card shadow-sm mb-4 border-0">
-                <div class="card-header bg-white border-0 d-flex align-items-center pt-3">
-                    <div class="rounded-circle bg-secondary me-2" style="width: 40px; height: 40px;"></div>
-                    <div>
-                        <h6 class="mb-0">Alex Ionescu</h6>
-                        <small class="text-muted">UPB Engineering • 2h ago</small>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>Just finished the documentation for the Calculus II notes. Hope this helps anyone preparing for
-                        exams!</p>
-                    <div class="bg-light p-5 text-center rounded"> [Project File Preview] </div>
-                </div>
-                <div class="card-footer bg-white border-top-0 d-flex gap-3">
-                    <button class="btn btn-link text-decoration-none text-dark"><i class="bi bi-heart"></i>
-                        Like</button>
-                    <button class="btn btn-link text-decoration-none text-dark"><i class="bi bi-chat"></i>
-                        Comment</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

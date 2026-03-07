@@ -1,49 +1,80 @@
-<div class="register-wrapper d-flex align-items-center justify-content-center">
-    <div class="card register-card shadow-lg border-0">
-        <div class="card-body p-4 p-md-5">
-            <div class="text-center mb-4">
-                <h2 class="fw-bold" style="color: #17187D;">Join PoliFans</h2>
-                <p class="text-muted">Create your student account</p>
-            </div>
+<div class="container-fluid p-0 vh-100 overflow-hidden">
+    <div class="row g-0 h-100">
 
-            <form #registerForm="ngForm">
-                <div class="mb-3">
-                    <label class="form-label small fw-bold">Full Name</label>
-                    <input type="text" class="form-control" placeholder="John Doe" required>
+        <div
+            class="col-lg-6 d-none d-lg-flex flex-column justify-content-center align-items-center text-white bg-pf-branding p-5">
+            <div class="text-center">
+                <h1 class="display-3 fw-bold mb-4">PoliFans</h1>
+                <p class="lead mb-5">The exclusive hub for Poly students to share, learn, and grow together.</p>
+                <div class="features-list text-start">
+                    <p><i class="bi bi-check-circle-fill me-2 text-warning"></i> Share your course projects</p>
+                    <p><i class="bi bi-check-circle-fill me-2 text-warning"></i> Get help from senior students</p>
+                    <p><i class="bi bi-check-circle-fill me-2 text-warning"></i> Access premium study materials</p>
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label small fw-bold">University Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="name@studentup.ro"
-                        pattern=".+@studentup\.ro" #email="ngModel" ngModel required>
-                    <div *ngIf="email.invalid && email.touched" class="text-danger small mt-1">
-                        <i class="bi bi-exclamation-circle"></i> Please use a valid @studentup.ro address.
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label small fw-bold">Password</label>
-                    <input type="password" class="form-control" placeholder="Create a strong password" required>
-                </div>
-
-                <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" id="terms" required>
-                    <label class="form-check-label small" for="terms">
-                        I agree to the <a href="#" style="color: #17187D;">Terms of Service</a>
-                    </label>
-                </div>
-
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-polifans py-2" [disabled]="registerForm.invalid">
-                        Create Account
-                    </button>
-                </div>
-            </form>
-
-            <div class="text-center mt-4">
-                <small>Already have an account? <a routerLink="/login" class="text-decoration-none fw-bold"
-                        style="color: #17187D;">Sign In</a></small>
             </div>
         </div>
+
+        <div class="col-lg-6 col-12 d-flex align-items-center justify-content-center bg-white p-4 overflow-auto">
+            <div class="form-container w-100" style="max-width: 450px;">
+
+                <div class="d-lg-none text-center mb-4">
+                    <h2 class="fw-bold" style="color: #17187D;">PoliFans</h2>
+                </div>
+
+                <h3 class="fw-bold mb-2">Create Account</h3>
+                <p class="text-muted mb-4">Enter your details to join the community.</p>
+
+                <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Full Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-person"></i></span>
+                            <input type="text" name="fullName" class="form-control bg-light border-start-0"
+                                placeholder="e.g. Andrei Ionescu" [(ngModel)]="registerData.fullName" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">University Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope"></i></span>
+                            <input type="email" name="email" class="form-control bg-light border-start-0"
+                                placeholder="name&#64;studentup.ro" pattern=".+&#64;studentup\.ro" #emailRef="ngModel"
+                                [(ngModel)]="registerData.email" required>
+                        </div>
+                        <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger x-small mt-1">
+                            Please use your official &#64;studentup.ro email.
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock"></i></span>
+                            <input [type]="passwordVisible ? 'text' : 'password'" name="password"
+                                class="form-control bg-light border-start-0 border-end-0"
+                                placeholder="Min. 8 characters" [(ngModel)]="registerData.password" required>
+                            <span class="input-group-text bg-light border-start-0 cursor-pointer"
+                                (click)="passwordVisible = !passwordVisible">
+                                <i [class]="passwordVisible ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-pf-action w-100 py-3 fw-bold shadow-sm"
+                        [disabled]="registerForm.invalid || isLoading">
+                        <span *ngIf="!isLoading">Join Now</span>
+                        <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-white"></div>
+                    </button>
+                </form>
+
+                <p class="text-center mt-4 small">
+                    Already a member? <a routerLink="/login" class="fw-bold text-decoration-none"
+                        style="color: #17187D;">Sign In</a>
+                </p>
+            </div>
+        </div>
+
     </div>
 </div>

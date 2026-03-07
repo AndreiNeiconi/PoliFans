@@ -1,20 +1,58 @@
-.register-wrapper {
-    min-height: 95vh;
-    background-color: #f8f9fa;
-    padding: 40px 20px;
+/* Branding Background with a subtle mesh gradient */
+.bg-pf-branding {
+    background: linear-gradient(135deg, #17187D 0%, #2a2cad 100%);
+    position: relative;
 }
 
-.register-card {
-    width: 100%;
-    max-width: 450px;
-    border-radius: 20px;
+/* Add a floating pattern overlay for texture */
+.bg-pf-branding::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
 }
 
-/* Visually show invalid state for the email */
-input.ng-invalid.ng-touched {
-    border-color: #dc3545;
+.btn-pf-action {
+    background-color: #17187D;
+    color: white;
+    border-radius: 12px;
+    transition: all 0.3s ease;
 }
 
-input.ng-valid.ng-touched {
-    border-color: #198754;
+.btn-pf-action:hover:not(:disabled) {
+    background-color: #0f105e;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(23, 24, 125, 0.3);
+}
+
+.form-control {
+    border-radius: 0 10px 10px 0;
+    padding: 12px;
+    border: 1px solid #eee;
+}
+
+.input-group-text {
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #eee;
+    color: #6c757d;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.x-small {
+    font-size: 0.75rem;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 991px) {
+    .vh-100 {
+        height: auto !important;
+        min-height: 100vh;
+    }
 }

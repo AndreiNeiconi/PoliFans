@@ -1,0 +1,19 @@
+.chat-sidebar {
+    background: white;
+    border-radius: var(--pf-radius) 0 0 var(--pf-radius);
+}
+
+.chat-bubble-me {
+    background: var(--pf-primary);
+    color: white;
+    border-radius: 18px 18px 0 18px;
+    padding: 12px 18px;
+    box-shadow: 0 4px 10px rgba(23, 24, 125, 0.2);
+}
+
+.chat-bubble-them {
+    background: #E9ECEF;
+    color: black;
+    border-radius: 18px 18px 18px 0;
+    padding: 12px 18px;
+}

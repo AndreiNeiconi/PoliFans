@@ -1,13 +1,26 @@
-/* Branding and variables */
 :root {
     --pf-primary: #17187D;
-    --pf-secondary: #fff;
-    --pf-light-bg: #f4f7f6;
+    --pf-accent: #FFD700;
+    /* Gold for highlights */
+    --pf-bg: #F0F2F5;
+    --pf-card-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    --pf-radius: 16px;
 }
 
 body {
-    background-color: var(--pf-light-bg);
-    font-family: 'Inter', sans-serif;
+    background-color: var(--pf-bg);
+}
+
+.pf-card {
+    background: white;
+    border: none;
+    border-radius: var(--pf-radius);
+    box-shadow: var(--pf-card-shadow);
+    transition: transform 0.2s ease;
+}
+
+.pf-card:hover {
+    transform: translateY(-3px);
 }
 
 .btn-polifans {
@@ -35,6 +48,9 @@ body {
     background-color: #f8f9fa;
     transition: margin 0.3s ease;
 }
+
+
+
 
 /* Desktop: Side-by-side layout */
 @media (min-width: 992px) {
