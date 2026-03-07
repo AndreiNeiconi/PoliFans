@@ -1,0 +1,15 @@
+.login-wrapper {
+    min-height: 90vh;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+}
+
+.form-control:focus {
+    border-color: #17187D;
+    box-shadow: 0 0 0 0.25rem rgba(23, 24, 125, 0.1);
+}

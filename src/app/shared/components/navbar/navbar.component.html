@@ -1,0 +1,28 @@
+<nav class="polifans-nav shadow-sm d-flex flex-column justify-content-between">
+    <div>
+        <div class="nav-brand d-none d-lg-block">
+            <h2 class="text-white p-3 mb-0">PoliFans</h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a routerLink="/feed" routerLinkActive="active-link"><i class="bi bi-house"></i> <span>Feed</span></a>
+            </li>
+            <li><a routerLink="/discover" routerLinkActive="active-link"><i class="bi bi-search"></i>
+                    <span>Discover</span></a></li>
+            <li><a routerLink="/messages" routerLinkActive="active-link"><i class="bi bi-chat"></i>
+                    <span>Messages</span></a></li>
+            <li><a routerLink="/subscription" routerLinkActive="active-link"><i class="bi bi-star"></i>
+                    <span>Premium</span></a></li>
+
+            <li class="d-lg-none"><a routerLink="/login" routerLinkActive="active-link"><i
+                        class="bi bi-person-circle"></i> <span>Login</span></a></li>
+        </ul>
+    </div>
+
+    <div class="d-none d-lg-block p-3 border-top border-white-50">
+        <a routerLink="/login" class="nav-link text-white d-flex align-items-center gap-2">
+            <i class="bi bi-box-arrow-in-right fs-4"></i>
+            <span>Sign In</span>
+        </a>
+    </div>
+</nav>

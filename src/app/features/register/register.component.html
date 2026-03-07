@@ -1,0 +1,49 @@
+<div class="register-wrapper d-flex align-items-center justify-content-center">
+    <div class="card register-card shadow-lg border-0">
+        <div class="card-body p-4 p-md-5">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold" style="color: #17187D;">Join PoliFans</h2>
+                <p class="text-muted">Create your student account</p>
+            </div>
+
+            <form #registerForm="ngForm">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Full Name</label>
+                    <input type="text" class="form-control" placeholder="John Doe" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">University Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="name@studentup.ro"
+                        pattern=".+@studentup\.ro" #email="ngModel" ngModel required>
+                    <div *ngIf="email.invalid && email.touched" class="text-danger small mt-1">
+                        <i class="bi bi-exclamation-circle"></i> Please use a valid @studentup.ro address.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Password</label>
+                    <input type="password" class="form-control" placeholder="Create a strong password" required>
+                </div>
+
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="checkbox" id="terms" required>
+                    <label class="form-check-label small" for="terms">
+                        I agree to the <a href="#" style="color: #17187D;">Terms of Service</a>
+                    </label>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-polifans py-2" [disabled]="registerForm.invalid">
+                        Create Account
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-4">
+                <small>Already have an account? <a routerLink="/login" class="text-decoration-none fw-bold"
+                        style="color: #17187D;">Sign In</a></small>
+            </div>
+        </div>
+    </div>
+</div>

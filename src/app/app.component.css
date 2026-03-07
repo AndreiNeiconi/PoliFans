@@ -1,0 +1,51 @@
+/* Branding and variables */
+:root {
+    --pf-primary: #17187D;
+    --pf-secondary: #fff;
+    --pf-light-bg: #f4f7f6;
+}
+
+body {
+    background-color: var(--pf-light-bg);
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-polifans {
+    background-color: var(--pf-primary);
+    color: white;
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+
+.btn-polifans:hover {
+    background-color: #0f105e;
+    color: white;
+}
+
+.app-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    /* Mobile: padding at bottom so navbar doesn't cover content */
+    padding-bottom: 70px;
+    background-color: #f8f9fa;
+    transition: margin 0.3s ease;
+}
+
+/* Desktop: Side-by-side layout */
+@media (min-width: 992px) {
+    .app-shell {
+        flex-direction: row;
+    }
+
+    .main-content {
+        padding-bottom: 0;
+        /* This matches the 250px width of our sidebar */
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
+}
