@@ -63,7 +63,6 @@ body {
         /* This matches the 250px width of our sidebar */
         margin-left: 250px;
         width: calc(100% - 250px);
-        /*no chage just for testing*/
 
     }
 }
