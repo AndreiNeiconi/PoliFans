@@ -1,0 +1,34 @@
+.group-banner {
+    height: 80px;
+    width: 100%;
+}
+
+.group-icon {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -30px;
+    left: 20px;
+    font-size: 1.5rem;
+    color: #17187D;
+}
+
+.pf-card {
+    border: 1px solid #eee;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pf-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(23, 24, 125, 0.12);
+}
+
+.x-small {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+}

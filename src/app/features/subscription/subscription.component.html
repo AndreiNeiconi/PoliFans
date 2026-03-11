@@ -1,33 +1,46 @@
-<div class="container py-5">
-    <h2 class="text-center mb-5" style="color: var(--pf-primary);">Support Your Peers</h2>
-    <div class="row g-4 justify-content-center">
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm text-center">
-                <div class="card-body">
-                    <h4>Basic Student</h4>
-                    <h2 class="my-4">Free</h2>
-                    <ul class="list-unstyled text-start">
-                        <li><i class="bi bi-check2 text-success"></i> Access to public files</li>
-                        <li><i class="bi bi-check2 text-success"></i> Community forums</li>
-                    </ul>
-                    <button class="btn btn-outline-primary w-100 mt-3">Current Plan</button>
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold m-0" style="color: #17187D;">Student Groups</h3>
+        <button class="btn btn-polifans shadow-sm">
+            <i class="bi bi-plus-circle me-2"></i>Create Group
+        </button>
+    </div>
+
+    <div class="row g-4">
+        @for (group of groups; track group.id) {
+        <div class="col-md-6 col-lg-4">
+            <div class="pf-card h-100 p-0 overflow-hidden">
+                <div class="group-banner" [style.background-color]="group.color"></div>
+
+                <div class="p-3 position-relative">
+                    <div class="group-icon shadow-sm">
+                        <i class="bi" [class]="group.icon"></i>
+                    </div>
+
+                    <div class="mt-5">
+                        <h5 class="fw-bold mb-1">{{ group.name }}</h5>
+                        <p class="text-muted small mb-3">{{ group.description }}</p>
+
+                        <div class="d-flex align-items-center justify-content-between mb-3 p-2 bg-light rounded-3">
+                            <div class="text-center flex-grow-1">
+                                <div class="fw-bold">{{ group.members }}</div>
+                                <div class="x-small text-uppercase text-muted">Members</div>
+                            </div>
+                            <div class="vr mx-2"></div>
+                            <div class="text-center flex-grow-1">
+                                <div class="fw-bold">{{ group.posts }}</div>
+                                <div class="x-small text-uppercase text-muted">Posts</div>
+                            </div>
+                        </div>
+
+                        <button class="btn w-100 rounded-pill py-2 fw-bold shadow-sm"
+                            [class.btn-polifans]="!group.joined" [class.btn-outline-secondary]="group.joined">
+                            {{ group.joined ? 'Already a Member' : 'Join Community' }}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-lg text-center border-primary">
-                <div class="card-body">
-                    <span class="badge bg-warning text-dark mb-2">MOST POPULAR</span>
-                    <h4>Poly Pro</h4>
-                    <h2 class="my-4">€5 <small class="text-muted">/mo</small></h2>
-                    <ul class="list-unstyled text-start">
-                        <li><i class="bi bi-check2 text-success"></i> Direct Chat with Creators</li>
-                        <li><i class="bi bi-check2 text-success"></i> Download source files</li>
-                        <li><i class="bi bi-check2 text-success"></i> Priority help</li>
-                    </ul>
-                    <button class="btn btn-polifans w-100 mt-3">Subscribe Now</button>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
