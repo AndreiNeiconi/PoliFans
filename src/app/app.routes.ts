@@ -6,10 +6,6 @@ import { MessagingComponent } from './features/messaging/messaging.component';
 import { SubscriptionComponent } from './features/subscription/subscription.component';
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
-import { NgModel } from '@angular/forms';
-import { NgModule } from '@angular/core';
-
-
 
 export const routes: Routes = [
   { path: '', redirectTo: 'messages', pathMatch: 'full' },
@@ -22,11 +18,4 @@ export const routes: Routes = [
   { path: '**', redirectTo: 'feed' },
 ];
 
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { useHash: true })
-  ],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export class AppRoutingModule {}
