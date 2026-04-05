@@ -27,11 +27,28 @@
                 <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
 
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Full Name</label>
+                        <label class="form-label small fw-bold">First Name</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0"><i class="bi bi-person"></i></span>
-                            <input type="text" name="fullName" class="form-control bg-light border-start-0"
-                                placeholder="e.g. Andrei Ionescu" [(ngModel)]="registerData.fullName" required>
+                            <input type="text" name="firstName" class="form-control bg-light border-start-0"
+                                placeholder="e.g. Andrei" [(ngModel)]="registerData.first_name" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Last Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-person"></i></span>
+                            <input type="text" name="lastName" class="form-control bg-light border-start-0"
+                                placeholder="e.g. Ionescu" [(ngModel)]="registerData.last_name" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-person"></i></span>
+                            <input type="text" name="username" class="form-control bg-light border-start-0"
+                                placeholder="e.g. Ionescu19" [(ngModel)]="registerData.username" required>
                         </div>
                     </div>
 

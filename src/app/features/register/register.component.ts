@@ -11,7 +11,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  registerData = { fullName: '', email: '', password: '' };
+  registerData = { first_name: '', last_name: '', username: '', email: '', password: '' };
   isLoading = false;
   passwordVisible = false; // Controls the eye-icon toggle
 
