@@ -1,23 +1,32 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router'; // Import Router
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterLink,RouterLinkActive, FormsModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  // Inject the router in the constructor
-  constructor(private router: Router) {}
+  loginData = { username: '', password: '' };
+
+  constructor(private router: Router, private authService: AuthService) {}
 
   onLogin() {
-    // This is where you will call your backend later.
-    // For now, we simulate a successful login:
-    console.log('Logging in...');
-    this.router.navigate(['/feed']);
+    this.authService.login(this.loginData).subscribe({
+      next: () => {
+        console.log('Login successful! Token saved.');
+        this.router.navigate(['/feed']);
+      },
+      error: (err) => {
+        alert('Invalid credentials!');
+        console.error(err);
+      }
+    });
   }
 }

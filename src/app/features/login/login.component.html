@@ -9,11 +9,12 @@
             <form>
                 <div class="mb-3">
                     <label class="form-label small fw-bold">University Email</label>
-                    <input type="email" class="form-control" placeholder="name@student.uni.ro">
+<input type="email" name="username" class="form-control" placeholder="Username or Email"
+    [(ngModel)]="loginData.username">
                 </div>
                 <div class="mb-3">
                     <label class="form-label small fw-bold">Password</label>
-                    <input type="password" class="form-control" placeholder="••••••••">
+<input type="password" name="password" class="form-control" placeholder="••••••••" [(ngModel)]="loginData.password">
                 </div>
                 <div class="d-grid gap-2 mt-4">
                     <button (click)="onLogin()" class="btn btn-polifans py-2" type="submit">
