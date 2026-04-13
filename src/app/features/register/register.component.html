@@ -57,8 +57,8 @@
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope"></i></span>
                             <input type="email" name="email" class="form-control bg-light border-start-0"
-                                placeholder="name&#64;studentup.ro" pattern=".+&#64;studentup\.ro" #emailRef="ngModel"
-                                [(ngModel)]="registerData.email" required>
+                                placeholder="name@studentup.ro" pattern="[a-zA-Z0-9._%+-]+@studentup\.ro"
+                                #emailRef="ngModel" [(ngModel)]="registerData.email" required>
                         </div>
                         <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger x-small mt-1">
                             Please use your official &#64;studentup.ro email.
