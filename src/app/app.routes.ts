@@ -10,7 +10,7 @@ import { ProfileComponent } from './features/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'messages', pathMatch: 'full' },
-  { path: 'feed', component: FeedComponent },
+  { path: 'feed', component: FeedComponent, },
   { path: 'discover', component: DiscoverComponent },
   { path: 'messages', component: MessagingComponent },
   { path: 'subscription', component: SubscriptionComponent },

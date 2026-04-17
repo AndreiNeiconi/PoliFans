@@ -14,18 +14,20 @@
             <li><a routerLink="/subscription" routerLinkActive="active-link"><i class="bi bi-star"></i>
                     <span>Premium</span></a></li>
 
-            <li class="d-lg-none">
-                <a  *ngIf="!(authService.isLoggedIn$ | async)" routerLink="/login" routerLinkActive="active-link" ><i
-                        class="bi bi-person-circle"></i> <span>Login</span></a></li>
-            <li><button *ngIf="authService.isLoggedIn$ | async" (click)="authService.logout()" class="btn btn-outline-light">Logout</button></li>
+            <li><a *ngIf="authService.isLoggedIn$ |async" routerLink="/profile" routerLinkActive="active-link"><i class="bi bi-person"></i>
+                    <span>Profile</span></a></li>
+                
         </ul>
         
     </div>
 
     <div class="d-none d-lg-block p-3 border-top border-white-50">
-        <a routerLink="/login" class="nav-link text-white d-flex align-items-center gap-2">
+        <a *ngIf="!(authService.isLoggedIn$ | async)" routerLink="/login" routerLinkActive="active-link" class="nav-link text-white d-flex align-items-center gap-2">
             <i class="bi bi-box-arrow-in-right fs-4"></i>
             <span>Sign In</span>
         </a>
+        <button *ngIf="authService.isLoggedIn$ | async" (click)="authService.logout()"
+            class="btn btn-outline-light">Logout</button>
+
     </div>
 </nav>
