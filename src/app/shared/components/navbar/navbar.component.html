@@ -14,8 +14,10 @@
             <li><a routerLink="/subscription" routerLinkActive="active-link"><i class="bi bi-star"></i>
                     <span>Premium</span></a></li>
 
-            <li class="d-lg-none"><a routerLink="/login" routerLinkActive="active-link"><i
+            <li class="d-lg-none">
+                <a  *ngIf="!(authService.isLoggedIn$ | async)" routerLink="/login" routerLinkActive="active-link" ><i
                         class="bi bi-person-circle"></i> <span>Login</span></a></li>
+            <li><button *ngIf="authService.isLoggedIn$ | async" (click)="authService.logout()" class="btn btn-outline-light">Logout</button></li>
         </ul>
     </div>
 
