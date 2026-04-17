@@ -7,17 +7,18 @@ import { SubscriptionComponent } from './features/subscription/subscription.comp
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { ProfileComponent } from './features/profile/profile.component';
+import { authGuard } from '../services/auth-guard.service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'messages', pathMatch: 'full' },
-  { path: 'feed', component: FeedComponent, },
-  { path: 'discover', component: DiscoverComponent },
-  { path: 'messages', component: MessagingComponent },
-  { path: 'subscription', component: SubscriptionComponent },
+  { path: 'feed', component: FeedComponent, canActivate: [authGuard] },
+  { path: 'discover', component: DiscoverComponent, canActivate: [authGuard] },
+  { path: 'messages', component: MessagingComponent, canActivate: [authGuard] },
+  { path: 'subscription', component: SubscriptionComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: '**', redirectTo: 'feed' },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: '**', redirectTo: 'feed', canActivate: [authGuard] },
 ];
 
 export class AppRoutingModule {}
