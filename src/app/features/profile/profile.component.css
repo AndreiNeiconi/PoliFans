@@ -1,0 +1,46 @@
+.profile-cover {
+    height: 160px;
+    background: linear-gradient(45deg, #17187D, #4e51bf);
+    width: 100%;
+}
+
+.profile-avatar-wrapper {
+    margin-top: -60px;
+    position: relative;
+    z-index: 2;
+}
+
+.profile-header-content {
+    margin-top: -10px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #17187D;
+}
+
+.nav-link {
+    color: #17187D;
+    background: white;
+    border: 1px solid #17187D;
+}
+
+.post-img-placeholder {
+    height: 120px;
+    background-color: #17187D;
+    opacity: 0.8;
+}
+
+.post-preview {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.post-preview:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.x-small {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}

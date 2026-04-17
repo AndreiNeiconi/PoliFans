@@ -6,6 +6,7 @@ import { MessagingComponent } from './features/messaging/messaging.component';
 import { SubscriptionComponent } from './features/subscription/subscription.component';
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
+import { ProfileComponent } from './features/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'messages', pathMatch: 'full' },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'subscription', component: SubscriptionComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: 'feed' },
 ];
 
