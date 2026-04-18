@@ -21,4 +21,17 @@ export const routes: Routes = [
   { path: '**', redirectTo: 'feed', canActivate: [authGuard] },
 ];
 
+// export const routes :Routes = [
+//   { path: '', redirectTo: 'messages', pathMatch: 'full' },
+//   { path: 'feed', component: FeedComponent},
+//   { path: 'discover', component: DiscoverComponent},
+//   { path: 'messages', component: MessagingComponent},
+//   { path: 'subscription', component: SubscriptionComponent},
+//   { path: 'login', component: LoginComponent },
+//   { path: 'register', component: RegisterComponent },
+//   { path: 'profile', component: ProfileComponent},
+//   { path: '**', redirectTo: 'feed'},
+  
+// ];
+
 export class AppRoutingModule {}

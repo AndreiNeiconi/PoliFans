@@ -13,6 +13,7 @@
 }
 
 @media (max-width: 991px) {
+    
     .active-link {
         border-left: none;
         border-top: 3px solid #fff;
@@ -25,7 +26,7 @@
     .polifans-nav {
         bottom: 0;
         width: 100%;
-        height: 65px;
+        height: 75px;
     }
 
     .nav-links {
@@ -36,11 +37,21 @@
         height: 100%;
         align-items: center;
         list-style: none;
+        text-decoration: none;
+    }
+    .nav-links ul li {
+        width: 100px;
     }
 
     .nav-links span {
         font-size: 10px;
         display: block;
+        color: #ffffff;
+    }
+    .nav-log-in{
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
 }
@@ -74,4 +85,6 @@
     .nav-links li a.active {
         background: rgba(255, 255, 255, 0.2);
     }
+    
+    
 }
