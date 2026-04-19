@@ -7,7 +7,7 @@ import { SubscriptionComponent } from './features/subscription/subscription.comp
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { ProfileComponent } from './features/profile/profile.component';
-import { authGuard } from '../services/auth-guard.service';
+import { authGuard } from '../services/auth-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'messages', pathMatch: 'full' },
