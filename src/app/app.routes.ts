@@ -8,6 +8,7 @@ import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { authGuard } from '../services/auth-guard';
+import { PostCreatorComponent } from './features/post_component/post.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'messages', pathMatch: 'full' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: 'post', component: PostCreatorComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: 'feed', canActivate: [authGuard] },
 ];
 
