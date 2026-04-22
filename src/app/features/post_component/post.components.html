@@ -1,0 +1,72 @@
+<div class="pf-card p-4 shadow-sm">
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Andrei" class="rounded-circle shadow-sm" width="45">
+        <div>
+            <h6 class="fw-bold mb-0">Create a New Post</h6>
+            <small class="text-muted text-uppercase x-small">Sharing as Andrei Ionescu</small>
+        </div>
+    </div>
+
+    <form #postForm="ngForm" (ngSubmit)="submitPost()">
+        <div class="btn-group w-100 mb-4 rounded-3 p-1 bg-light">
+            <input type="radio" class="btn-check" name="postType" id="personal" [(ngModel)]="postData.type"
+                value="personal">
+            <label class="btn btn-outline-pf border-0 rounded-3 flex-grow-1" for="personal">
+                <i class="bi bi-person-fill me-1"></i> Personal Post
+            </label>
+
+            <input type="radio" class="btn-check" name="postType" id="channel" [(ngModel)]="postData.type"
+                value="channel">
+            <label class="btn btn-outline-pf border-0 rounded-3 flex-grow-1" for="channel">
+                <i class="bi bi-megaphone-fill me-1"></i> Channel Post
+            </label>
+        </div>
+
+        <div class="mb-3">
+            <input type="text" name="title" class="form-control form-control-lg border-0 bg-light fs-5 fw-bold"
+                placeholder="Post Title..." [(ngModel)]="postData.title" required>
+        </div>
+
+        <div class="mb-3">
+            <textarea name="content" class="form-control border-0 bg-light no-resize" rows="4"
+                placeholder="What's on your mind? Share your work or ask a question..." [(ngModel)]="postData.content"
+                required></textarea>
+        </div>
+
+        @if (selectedFiles.length > 0) {
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            @for (file of selectedFiles; track $index) {
+            <div class="badge bg-pf-secondary p-2 d-flex align-items-center gap-2 rounded-pill">
+                <i class="bi" [class]="getFileIcon(file.type)"></i>
+                <span class="text-truncate" style="max-width: 150px;">{{ file.name }}</span>
+                <button type="button" class="btn-close btn-close-white small" (click)="removeFile($index)"></button>
+            </div>
+            }
+        </div>
+        }
+
+        <div class="d-flex flex-wrap align-items-center justify-content-between border-top pt-3 gap-3">
+            <div class="d-flex gap-2">
+                <input type="file" #fileInput class="d-none" multiple (change)="onFileSelect($event)">
+
+                <button type="button" class="btn btn-light rounded-pill px-3 btn-sm shadow-sm"
+                    (click)="fileInput.click()">
+                    <i class="bi bi-image text-primary me-1"></i> Image
+                </button>
+                <button type="button" class="btn btn-light rounded-pill px-3 btn-sm shadow-sm"
+                    (click)="fileInput.click()">
+                    <i class="bi bi-file-earmark-pdf text-danger me-1"></i> Document
+                </button>
+            </div>
+
+            <button type="submit" class="btn btn-polifans px-5 py-2 rounded-pill shadow"
+                [disabled]="postForm.invalid || isLoading">
+                @if (isLoading) {
+                <span class="spinner-border spinner-border-sm"></span>
+                } @else {
+                Post Now
+                }
+            </button>
+        </div>
+    </form>
+</div>
