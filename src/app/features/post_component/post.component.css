@@ -1,0 +1,47 @@
+.no-resize {
+    resize: none;
+}
+
+.x-small {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.bg-pf-secondary {
+    background-color: #17187D;
+    color: white;
+}
+
+/* Custom Toggle Styling */
+.btn-outline-pf {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.btn-check:checked+.btn-outline-pf {
+    background-color: white;
+    color: #17187D;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-control:focus {
+    background-color: #e9ecef;
+    box-shadow: none;
+}
+
+/* File badge transition */
+.badge {
+    transition: all 0.2s ease;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 576px) {
+    .btn-group .btn {
+        font-size: 0.85rem;
+    }
+
+    .btn-polifans {
+        width: 100%;
+        /* Full width on mobile */
+    }
+}
