@@ -36,7 +36,7 @@ export class RegisterComponent {
     last_name: lastName,
     username: generatedUsername,
     email: this.registerData.email,
-    password: this.registerData.password
+    password_hash: this.registerData.password
   };
 
   this.authService.register(payload).subscribe({
