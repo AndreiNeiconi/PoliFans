@@ -16,6 +16,7 @@ export class ProfileService { // Corrected name
   getUserProfile(): Observable<any> { 
     // 1. Retrieve the token from storage
     const token = localStorage.getItem('access_token');
+    console.log('Retrieved token:', token); // Debug log to check token retrieval
     
     // 2. Attach it to the Authorization header
     const headers = new HttpHeaders({
