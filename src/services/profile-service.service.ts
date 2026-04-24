@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,6 @@ export class ProfileService { // Corrected name
     });
 
     // 3. Send the GET request to the exact NestJS endpoint, including the headers
-    return this.http.get('http://localhost:3000/profiles', { headers }); 
+    return this.http.get(`${environment.apiUrl}/profiles`, { headers }); 
   }
 }
