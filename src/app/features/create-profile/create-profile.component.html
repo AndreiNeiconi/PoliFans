@@ -1,0 +1,50 @@
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="pf-card overflow-hidden shadow-sm">
+                <div class="profile-cover" [style.background-image]="'url(' + profileData.cover_photo_url + ')'"></div>
+
+                <div class="px-4 pb-4 position-relative">
+                    <div class="avatar-container">
+                        <img [src]="profileData.profile_picture_url"
+                            class="rounded-circle border border-4 border-white shadow" width="120" height="120">
+                    </div>
+
+                    <div class="text-end pt-3">
+                        <button class="btn btn-outline-pf btn-sm rounded-pill">Edit Profile</button>
+                    </div>
+
+                    <div class="mt-4">
+                        <h4 class="fw-bold mb-0">Andrei</h4>
+                        <p class="text-pf-primary fw-medium mb-2">{{ profileData.headline }}</p>
+                        <p class="text-muted small">{{ profileData.bio }}</p>
+                    </div>
+
+                    <div class="d-flex gap-4 mt-4 border-top pt-3 text-center">
+                        <div class="flex-grow-1">
+                            <div class="fw-bold h5 mb-0">{{ profileData.posts_count }}</div>
+                            <small class="text-muted text-uppercase x-small">Posts</small>
+                        </div>
+                        <div class="flex-grow-1 border-start border-end">
+                            <div class="fw-bold h5 mb-0">{{ profileData.followers_count }}</div>
+                            <small class="text-muted text-uppercase x-small">Followers</small>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="fw-bold h5 mb-0">{{ profileData.following_count }}</div>
+                            <small class="text-muted text-uppercase x-small">Following</small>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="small fw-bold mb-2">Skills</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            @for (skill of profileData.skills; track $index) {
+                            <span class="badge rounded-pill bg-light text-pf-primary border">{{ skill }}</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

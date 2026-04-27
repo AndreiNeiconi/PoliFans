@@ -1,0 +1,36 @@
+.text-pf-primary {
+    color: #17187D;
+}
+
+.pf-card {
+    background: white;
+    border-radius: 20px;
+}
+
+.profile-cover {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-color: #17187D;
+    /* Fallback color */
+}
+
+.avatar-container {
+    margin-top: -60px;
+    display: inline-block;
+}
+
+.btn-outline-pf {
+    border-color: #17187D;
+    color: #17187D;
+}
+
+.btn-outline-pf:hover {
+    background-color: #17187D;
+    color: white;
+}
+
+.x-small {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+}
