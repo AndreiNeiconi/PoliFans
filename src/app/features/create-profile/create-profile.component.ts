@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProfileService } from '../../../services/profile-service.service'; // <-- Import the service
 
 @Component({
   selector: 'app-create-profile',
   standalone: true,
-  imports: [FormsModule], // No CommonModule needed for @if/@for
+  imports: [FormsModule],
   templateUrl: './create-profile.component.html',
   styleUrls: ['./create-profile.component.css']
 })
 export class CreateProfileComponent {
-  // Mapping precisely to your PostgreSQL column names
   profile = {
     id: null,
     date_of_birth: '',
@@ -25,17 +25,14 @@ export class CreateProfileComponent {
     updated_at: ''
   };
 
-  constructor(private router: Router) {}
+  // <-- Inject the ProfileService here
+  constructor(private router: Router, private profileService: ProfileService) {}
 
-  /**
-   * Handles local device file selection and preview
-   */
   onFileChange(event: any, targetField: 'profile_picture_url' | 'cover_photo_url') {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        // Base64 string for preview; in production, you'd upload this to a server
         this.profile[targetField] = e.target.result;
       };
       reader.readAsDataURL(file);
@@ -43,13 +40,17 @@ export class CreateProfileComponent {
   }
 
   saveProfile() {
-    // Update the timestamp before syncing to PostgreSQL
     this.profile.updated_at = new Date().toISOString();
     
-    console.log('Final Data for PostgreSQL:', this.profile);
-    
-    // Logic: If successful, redirect to the dashboard
-    this.router.navigate(['/profile']);
+    // Send the data to NestJS!
+    this.profileService.updateUserProfile(this.profile).subscribe({
+      next: (response) => {
+        console.log('Profile successfully updated!', response);
+        this.router.navigate(['/profile']); // Redirect only after success
+      },
+      error: (err) => {
+        console.error('Error updating profile:', err);
+      }
+    });
   }
-
 }

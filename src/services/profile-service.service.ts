@@ -26,4 +26,13 @@ export class ProfileService { // Corrected name
     // 3. Send the GET request to the exact NestJS endpoint, including the headers
     return this.http.get(`${environment.apiUrl}/profiles`, { headers }); 
   }
+  //Create and edit profile
+  updateUserProfile(profileData: any) {
+    const token = localStorage.getItem('acces_token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(`${environment.apiUrl}/profiles`, profileData, { headers });
+  }
+
 }
