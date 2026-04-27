@@ -1,36 +1,82 @@
-<div class="mb-4">
-    <label class="form-label small fw-bold">Profile Assets</label>
-    <div class="row g-3">
-        <div class="col-md-6">
-            <div class="upload-box p-3 border rounded-3 text-center bg-light">
-                <img [src]="profile.profile_picture_url || 'https://api.dicebear.com/7.x/initials/svg?seed=P'"
-                    class="rounded-circle mb-2 shadow-sm" width="80" height="80">
-                <div class="mt-2">
-                    <input type="file" #profileInput class="d-none" accept="image/*"
-                        (change)="onFileChange($event, 'profile_picture_url')">
-                    <button type="button" class="btn btn-sm btn-polifans rounded-pill px-3"
-                        (click)="profileInput.click()">
-                        <i class="bi bi-upload me-1"></i> Upload Avatar
-                    </button>
-                </div>
-            </div>
-        </div>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="pf-card shadow-lg border-0 overflow-hidden">
 
-        <div class="col-md-6">
-            <div class="upload-box p-3 border rounded-3 text-center bg-light">
-                <div class="cover-preview mb-2 rounded"
-                    [style.background-image]="'url(' + profile.cover_photo_url + ')'"
-                    style="height: 80px; background-size: cover; background-color: #ddd;">
-                    @if (!profile.cover_photo_url) {
-                    <small class="text-muted d-block pt-4">No cover photo</small>
-                    }
+                <div class="header-banner p-4 text-center text-white">
+                    <h2 class="fw-bold m-0">Setup Your Profile</h2>
+                    <p class="small opacity-75">Visible to your fellow students at PoliFans</p>
                 </div>
-                <input type="file" #coverInput class="d-none" accept="image/*"
-                    (change)="onFileChange($event, 'cover_photo_url')">
-                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3"
-                    (click)="coverInput.click()">
-                    Choose Cover
-                </button>
+
+                <form #profileForm="ngForm" class="p-4 p-md-5 bg-white">
+
+                    <div class="row mb-5 align-items-center">
+                        <div class="col-md-4 text-center position-relative">
+                            <div class="avatar-edit-container mx-auto">
+                                <img [src]="profile.profile_picture_url || 'https://api.dicebear.com/7.x/initials/svg?seed=P'"
+                                    class="rounded-circle shadow border border-3 border-white" width="130" height="130">
+                                <input type="file" #profileInput class="d-none" accept="image/*"
+                                    (change)="onFileChange($event, 'profile_picture_url')">
+                                <button type="button"
+                                    class="btn btn-polifans btn-sm position-absolute fab-btn rounded-circle"
+                                    (click)="profileInput.click()">
+                                    <i class="bi bi-camera"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 mt-3 mt-md-0">
+                            <label class="form-label small fw-bold">Professional Headline</label>
+                            <input type="text" name="headline" class="form-control mb-3"
+                                placeholder="e.g. Mechanical Engineering Student" [(ngModel)]="profile.headline"
+                                required>
+
+                            <label class="form-label small fw-bold">Date of Birth</label>
+                            <input type="date" name="dob" class="form-control" [(ngModel)]="profile.date_of_birth"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold">Bio & Goals</label>
+                        <textarea name="bio" class="form-control" rows="4"
+                            placeholder="Share your research interests or project history..."
+                            [(ngModel)]="profile.bio"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold">Cover Photo</label>
+                        <div class="cover-drop-zone rounded-3 p-4 text-center mb-2"
+                            [style.background-image]="'url(' + profile.cover_photo_url + ')'">
+                            @if (!profile.cover_photo_url) {
+                            <i class="bi bi-image fs-1 text-muted"></i>
+                            <p class="small text-muted">Select a cover image from your device</p>
+                            }
+                        </div>
+                        <input type="file" #coverInput class="d-none" accept="image/*"
+                            (change)="onFileChange($event, 'cover_photo_url')">
+                        <button type="button" class="btn btn-outline-pf w-100 rounded-pill"
+                            (click)="coverInput.click()">Choose Cover Image</button>
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="form-label small fw-bold">Skills</label>
+                        <input type="text" name="skills" class="form-control"
+                            placeholder="Enter skills separated by commas (e.g. AutoCAD, Java, Python)"
+                            [(ngModel)]="profile.skills">
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center pt-4 border-top">
+                        <div class="text-muted x-small">
+                            Last Synced: {{ profile.updated_at || 'Pending' }}
+                        </div>
+                        <button type="button" class="btn btn-polifans px-5 py-2 rounded-pill shadow"
+                            [disabled]="profileForm.invalid" (click)="saveProfile()">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

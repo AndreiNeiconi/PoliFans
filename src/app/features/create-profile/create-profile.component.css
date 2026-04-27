@@ -1,20 +1,66 @@
-.upload-box {
-    transition: all 0.2s ease;
-    border: 1px dashed #ced4da !important;
+.header-banner {
+    background: linear-gradient(135deg, #17187D 0%, #2a2cad 100%);
 }
 
-.upload-box:hover {
-    border-color: #17187D !important;
-    background-color: #f0f1ff !important;
+.pf-card {
+    border-radius: 25px;
+}
+
+.avatar-edit-container {
+    width: 130px;
+    height: 130px;
+}
+
+.fab-btn {
+    bottom: 5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    border: 2px solid white;
+}
+
+.cover-drop-zone {
+    background-color: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.cover-drop-zone:hover {
+    border-color: #17187D;
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 12px;
+    background-color: #fcfcfc;
+}
+
+.form-control:focus {
+    border-color: #17187D;
+    box-shadow: 0 0 0 0.25rem rgba(23, 24, 125, 0.1);
 }
 
 .btn-polifans {
     background-color: #17187D;
     color: white;
-    font-size: 0.8rem;
 }
 
-.cover-preview {
-    border: 1px solid #eee;
-    background-position: center;
+.btn-outline-pf {
+    border-color: #17187D;
+    color: #17187D;
+}
+
+.btn-outline-pf:hover {
+    background-color: #17187D;
+    color: white;
+}
+
+.x-small {
+    font-size: 0.7rem;
 }
