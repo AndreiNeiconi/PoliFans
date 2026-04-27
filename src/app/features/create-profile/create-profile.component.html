@@ -1,71 +1,36 @@
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="pf-card p-0 shadow-lg overflow-hidden">
-
-                <div class="p-4 text-white text-center" style="background: #17187D;">
-                    <h3 class="fw-bold mb-0">Set Up Your Identity</h3>
-                    <p class="small opacity-75">Tell other students about your skills and goals</p>
+<div class="mb-4">
+    <label class="form-label small fw-bold">Profile Assets</label>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="upload-box p-3 border rounded-3 text-center bg-light">
+                <img [src]="profile.profile_picture_url || 'https://api.dicebear.com/7.x/initials/svg?seed=P'"
+                    class="rounded-circle mb-2 shadow-sm" width="80" height="80">
+                <div class="mt-2">
+                    <input type="file" #profileInput class="d-none" accept="image/*"
+                        (change)="onFileChange($event, 'profile_picture_url')">
+                    <button type="button" class="btn btn-sm btn-polifans rounded-pill px-3"
+                        (click)="profileInput.click()">
+                        <i class="bi bi-upload me-1"></i> Upload Avatar
+                    </button>
                 </div>
+            </div>
+        </div>
 
-                <form #editForm="ngForm" class="p-4 p-md-5">
-
-                    <div class="row mb-5">
-                        <div class="col-md-4 text-center mb-3 mb-md-0">
-                            <div class="avatar-edit-wrapper mx-auto">
-                                <img [src]="profile.profile_picture_url || 'https://api.dicebear.com/7.x/initials/svg?seed=P'"
-                                    class="rounded-circle shadow" width="120" height="120">
-                                <button type="button"
-                                    class="btn btn-sm btn-polifans position-absolute bottom-0 end-0 rounded-circle">
-                                    <i class="bi bi-camera"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <label class="form-label small fw-bold">Headline</label>
-                            <input type="text" name="headline" class="form-control mb-3"
-                                placeholder="e.g. Master's Student in Robotics" [(ngModel)]="profile.headline">
-
-                            <label class="form-label small fw-bold">Date of Birth</label>
-                            <input type="date" name="dob" class="form-control" [(ngModel)]="profile.date_of_birth">
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label small fw-bold">Bio (Tell your story)</label>
-                        <textarea name="bio" class="form-control" rows="4"
-                            placeholder="Discuss your research, projects, or interests..."
-                            [(ngModel)]="profile.bio"></textarea>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label small fw-bold">Cover Photo URL</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light"><i class="bi bi-image"></i></span>
-                            <input type="text" name="cover" class="form-control"
-                                placeholder="https://example.com/cover.jpg" [(ngModel)]="profile.cover_photo_url">
-                        </div>
-                    </div>
-
-                    <div class="mb-5">
-                        <label class="form-label small fw-bold">Skills & Interests</label>
-                        <input type="text" name="skills" class="form-control"
-                            placeholder="Separate skills with commas (e.g. Python, PCB Design, LaTeX)"
-                            [(ngModel)]="profile.skills">
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center pt-4 border-top">
-                        <span class="text-muted small">
-                            <i class="bi bi-info-circle me-1"></i>
-                            Last updated: {{ profile.updated_at || 'Never' }}
-                        </span>
-                        <button type="button" class="btn btn-polifans px-5 py-2 rounded-pill shadow"
-                            (click)="saveProfile()">
-                            Save Profile
-                        </button>
-                    </div>
-                </form>
-
+        <div class="col-md-6">
+            <div class="upload-box p-3 border rounded-3 text-center bg-light">
+                <div class="cover-preview mb-2 rounded"
+                    [style.background-image]="'url(' + profile.cover_photo_url + ')'"
+                    style="height: 80px; background-size: cover; background-color: #ddd;">
+                    @if (!profile.cover_photo_url) {
+                    <small class="text-muted d-block pt-4">No cover photo</small>
+                    }
+                </div>
+                <input type="file" #coverInput class="d-none" accept="image/*"
+                    (change)="onFileChange($event, 'cover_photo_url')">
+                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3"
+                    (click)="coverInput.click()">
+                    Choose Cover
+                </button>
             </div>
         </div>
     </div>

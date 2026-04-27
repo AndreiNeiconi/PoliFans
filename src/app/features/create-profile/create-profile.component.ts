@@ -10,26 +10,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-profile.component.css']
 })
 export class CreateProfileComponent {
-// Directly mapping the PostgreSQL column names
-  profile = {
-    id: null,
-    date_of_birth: '',
-    headline: '',
-    bio: '',
+profile = {
     profile_picture_url: '',
     cover_photo_url: '',
-    skills: '',
-    updated_at: ''
+    updated_at: '' // Tracked column from your DB
   };
 
-  constructor(private router: Router) {}
-
-  saveProfile() {
-    // Logic to UPDATE or INSERT into PostgreSQL
-    this.profile.updated_at = new Date().toISOString();
-    console.log('Syncing to PostgreSQL:', this.profile);
-    
-    // Redirect to the main feed/profile view after saving
-    this.router.navigate(['/profile']);
+  /**
+   * Captures the file from the device explorer
+   */
+  onFileChange(event: any, targetField: 'profile_picture_url' | 'cover_photo_url') {
+    const file = event.target.files[0];
+    if (file) {
+      // Create a local preview URL (in a real app, you'd upload this to a server/S3)
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.profile[targetField] = e.target.result;
+        this.profile.updated_at = new Date().toISOString(); // Update timestamp
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }

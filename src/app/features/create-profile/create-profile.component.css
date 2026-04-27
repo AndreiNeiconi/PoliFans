@@ -1,34 +1,20 @@
-.pf-card {
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.avatar-edit-wrapper {
-    position: relative;
-    width: 120px;
-    height: 120px;
-}
-
-.form-control {
-    border-radius: 10px;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
+.upload-box {
     transition: all 0.2s ease;
+    border: 1px dashed #ced4da !important;
 }
 
-.form-control:focus {
-    border-color: #17187D;
-    box-shadow: 0 0 0 0.2rem rgba(23, 24, 125, 0.1);
-    background-color: #fff;
+.upload-box:hover {
+    border-color: #17187D !important;
+    background-color: #f0f1ff !important;
 }
 
 .btn-polifans {
     background-color: #17187D;
     color: white;
-    transition: transform 0.2s;
+    font-size: 0.8rem;
 }
 
-.btn-polifans:hover {
-    transform: translateY(-2px);
-    background-color: #0f105e;
+.cover-preview {
+    border: 1px solid #eee;
+    background-position: center;
 }
