@@ -1,27 +1,36 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-profile',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule], // No CommonModule needed for @if/@for
   templateUrl: './create-profile.component.html',
-  styleUrl: './create-profile.component.css'
+  styleUrls: ['./create-profile.component.css']
 })
 export class CreateProfileComponent {
-  // Mapping the PostgreSQL schema columns to a mock object
+  currentStep = 1;
+  totalSteps = 2;
+
+  // Schema-aligned object
   profileData = {
-    id: 1,
-    headline: 'Software Engineering Student',
-    bio: 'Building the future of student collaboration on PoliFans.',
-    profile_picture_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Andrei',
-    cover_photo_url: 'https://images.unsplash.com/photo-1557683316-973673baf926', // Fallback cover
-    posts_count: 12,
-    followers_count: 256,
-    following_count: 180,
-    skills: ['Angular', 'PostgreSQL', 'TypeScript', 'Bootstrap']
+    headline: '',
+    bio: '',
+    date_of_birth: '',
+    profile_picture_url: '',
+    cover_photo_url: '',
+    skills: ''
   };
 
-  ngOnInit(): void {
-    // Logic to fetch user data based on 'id' would go here
-    console.log('Profile loaded for student ID:', this.profileData.id);
+  constructor(private router: Router) {}
+
+  nextStep() { if (this.currentStep < this.totalSteps) this.currentStep++; }
+  prevStep() { if (this.currentStep > 1) this.currentStep--; }
+
+  saveProfile() {
+    console.log('Sending to PostgreSQL:', this.profileData);
+    // After saving, redirect to the actual feed or profile view
+    this.router.navigate(['/profile']);
   }
 }

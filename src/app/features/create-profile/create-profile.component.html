@@ -1,49 +1,69 @@
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="pf-card overflow-hidden shadow-sm">
-                <div class="profile-cover" [style.background-image]="'url(' + profileData.cover_photo_url + ')'"></div>
+        <div class="col-md-7">
+            <div class="pf-card p-4 p-md-5 shadow-lg">
 
-                <div class="px-4 pb-4 position-relative">
-                    <div class="avatar-container">
-                        <img [src]="profileData.profile_picture_url"
-                            class="rounded-circle border border-4 border-white shadow" width="120" height="120">
-                    </div>
-
-                    <div class="text-end pt-3">
-                        <button class="btn btn-outline-pf btn-sm rounded-pill">Edit Profile</button>
-                    </div>
-
-                    <div class="mt-4">
-                        <h4 class="fw-bold mb-0">Andrei</h4>
-                        <p class="text-pf-primary fw-medium mb-2">{{ profileData.headline }}</p>
-                        <p class="text-muted small">{{ profileData.bio }}</p>
-                    </div>
-
-                    <div class="d-flex gap-4 mt-4 border-top pt-3 text-center">
-                        <div class="flex-grow-1">
-                            <div class="fw-bold h5 mb-0">{{ profileData.posts_count }}</div>
-                            <small class="text-muted text-uppercase x-small">Posts</small>
-                        </div>
-                        <div class="flex-grow-1 border-start border-end">
-                            <div class="fw-bold h5 mb-0">{{ profileData.followers_count }}</div>
-                            <small class="text-muted text-uppercase x-small">Followers</small>
-                        </div>
-                        <div class="flex-grow-1">
-                            <div class="fw-bold h5 mb-0">{{ profileData.following_count }}</div>
-                            <small class="text-muted text-uppercase x-small">Following</small>
-                        </div>
-                    </div>
-
-                    <div class="mt-4">
-                        <p class="small fw-bold mb-2">Skills</p>
-                        <div class="d-flex flex-wrap gap-2">
-                            @for (skill of profileData.skills; track $index) {
-                            <span class="badge rounded-pill bg-light text-pf-primary border">{{ skill }}</span>
-                            }
-                        </div>
-                    </div>
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-pf-primary">Complete Your Profile</h2>
+                    <p class="text-muted">Tell the PoliFans community who you are.</p>
                 </div>
+
+                <form #profileForm="ngForm">
+
+                    @if (currentStep === 1) {
+                    <div class="step-animation">
+                        <div class="mb-4 text-center">
+                            <div class="profile-upload-circle mx-auto mb-3">
+                                <i class="bi bi-camera fs-2"></i>
+                            </div>
+                            <label class="form-label d-block small fw-bold">Upload Profile Picture</label>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Headline</label>
+                            <input type="text" name="headline" class="form-control"
+                                placeholder="e.g. 3rd Year Automation Student" [(ngModel)]="profileData.headline"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Date of Birth</label>
+                            <input type="date" name="dob" class="form-control" [(ngModel)]="profileData.date_of_birth"
+                                required>
+                        </div>
+                    </div>
+                    }
+
+                    @if (currentStep === 2) {
+                    <div class="step-animation">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Bio</label>
+                            <textarea name="bio" class="form-control" rows="4"
+                                placeholder="What are your academic interests?" [(ngModel)]="profileData.bio"
+                                required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Skills (Comma separated)</label>
+                            <input type="text" name="skills" class="form-control"
+                                placeholder="Python, CAD, Project Management..." [(ngModel)]="profileData.skills">
+                        </div>
+                    </div>
+                    }
+
+                    <div class="d-flex justify-content-between mt-5">
+                        <button type="button" class="btn btn-link text-decoration-none text-pf-primary"
+                            (click)="prevStep()" [disabled]="currentStep === 1">Back</button>
+
+                        @if (currentStep < totalSteps) { <button type="button" class="btn btn-polifans px-4"
+                            (click)="nextStep()">Next Step</button>
+                            } @else {
+                            <button type="button" class="btn btn-success px-4 shadow" (click)="saveProfile()"
+                                [disabled]="profileForm.invalid">Finish Setup</button>
+                            }
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
