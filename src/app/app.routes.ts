@@ -9,6 +9,7 @@ import { RegisterComponent } from './features/register/register.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { authGuard } from '../services/auth-guard';
 import { PostCreatorComponent } from './features/post_component/post.component';
+import { CreateProfileComponent } from './features/create-profile/create-profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'messages', pathMatch: 'full' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'post', component: PostCreatorComponent, canActivate: [authGuard] },
+  { path: 'create-profile', component: CreateProfileComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: 'feed', canActivate: [authGuard] },
 ];
 

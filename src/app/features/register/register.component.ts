@@ -42,7 +42,7 @@ export class RegisterComponent {
   this.authService.register(payload).subscribe({
     next: (res) => {
       this.isLoading = false;
-      this.router.navigate(['/login']);
+      this.router.navigate(['/create-profile']); // Redirect to profile creation after successful registration
     },
     error: (err) => {
       this.isLoading = false;
