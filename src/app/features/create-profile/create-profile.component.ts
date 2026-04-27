@@ -10,27 +10,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-profile.component.css']
 })
 export class CreateProfileComponent {
-  currentStep = 1;
-  totalSteps = 2;
-
-  // Schema-aligned object
-  profileData = {
+// Directly mapping the PostgreSQL column names
+  profile = {
+    id: null,
+    date_of_birth: '',
     headline: '',
     bio: '',
-    date_of_birth: '',
     profile_picture_url: '',
     cover_photo_url: '',
-    skills: ''
+    skills: '',
+    updated_at: ''
   };
 
   constructor(private router: Router) {}
 
-  nextStep() { if (this.currentStep < this.totalSteps) this.currentStep++; }
-  prevStep() { if (this.currentStep > 1) this.currentStep--; }
-
   saveProfile() {
-    console.log('Sending to PostgreSQL:', this.profileData);
-    // After saving, redirect to the actual feed or profile view
+    // Logic to UPDATE or INSERT into PostgreSQL
+    this.profile.updated_at = new Date().toISOString();
+    console.log('Syncing to PostgreSQL:', this.profile);
+    
+    // Redirect to the main feed/profile view after saving
     this.router.navigate(['/profile']);
   }
 }

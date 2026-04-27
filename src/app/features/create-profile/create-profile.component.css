@@ -1,48 +1,34 @@
-.text-pf-primary {
-    color: #17187D;
-}
-
 .pf-card {
-    background: white;
-    border-radius: 24px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.profile-upload-circle {
-    width: 100px;
-    height: 100px;
-    background-color: #f8f9fa;
-    border: 2px dashed #17187D;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #17187D;
-    cursor: pointer;
-}
-
-.step-animation {
-    animation: fadeIn 0.4s ease-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.avatar-edit-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
 }
 
 .form-control {
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 12px;
-    border: 1px solid #dee2e6;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
 }
 
 .form-control:focus {
     border-color: #17187D;
-    box-shadow: 0 0 0 0.25rem rgba(23, 24, 125, 0.1);
+    box-shadow: 0 0 0 0.2rem rgba(23, 24, 125, 0.1);
+    background-color: #fff;
+}
+
+.btn-polifans {
+    background-color: #17187D;
+    color: white;
+    transition: transform 0.2s;
+}
+
+.btn-polifans:hover {
+    transform: translateY(-2px);
+    background-color: #0f105e;
 }

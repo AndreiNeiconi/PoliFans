@@ -1,66 +1,68 @@
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-7">
-            <div class="pf-card p-4 p-md-5 shadow-lg">
+        <div class="col-lg-8">
+            <div class="pf-card p-0 shadow-lg overflow-hidden">
 
-                <div class="text-center mb-4">
-                    <h2 class="fw-bold text-pf-primary">Complete Your Profile</h2>
-                    <p class="text-muted">Tell the PoliFans community who you are.</p>
+                <div class="p-4 text-white text-center" style="background: #17187D;">
+                    <h3 class="fw-bold mb-0">Set Up Your Identity</h3>
+                    <p class="small opacity-75">Tell other students about your skills and goals</p>
                 </div>
 
-                <form #profileForm="ngForm">
+                <form #editForm="ngForm" class="p-4 p-md-5">
 
-                    @if (currentStep === 1) {
-                    <div class="step-animation">
-                        <div class="mb-4 text-center">
-                            <div class="profile-upload-circle mx-auto mb-3">
-                                <i class="bi bi-camera fs-2"></i>
+                    <div class="row mb-5">
+                        <div class="col-md-4 text-center mb-3 mb-md-0">
+                            <div class="avatar-edit-wrapper mx-auto">
+                                <img [src]="profile.profile_picture_url || 'https://api.dicebear.com/7.x/initials/svg?seed=P'"
+                                    class="rounded-circle shadow" width="120" height="120">
+                                <button type="button"
+                                    class="btn btn-sm btn-polifans position-absolute bottom-0 end-0 rounded-circle">
+                                    <i class="bi bi-camera"></i>
+                                </button>
                             </div>
-                            <label class="form-label d-block small fw-bold">Upload Profile Picture</label>
                         </div>
-
-                        <div class="mb-3">
+                        <div class="col-md-8">
                             <label class="form-label small fw-bold">Headline</label>
-                            <input type="text" name="headline" class="form-control"
-                                placeholder="e.g. 3rd Year Automation Student" [(ngModel)]="profileData.headline"
-                                required>
-                        </div>
+                            <input type="text" name="headline" class="form-control mb-3"
+                                placeholder="e.g. Master's Student in Robotics" [(ngModel)]="profile.headline">
 
-                        <div class="mb-3">
                             <label class="form-label small fw-bold">Date of Birth</label>
-                            <input type="date" name="dob" class="form-control" [(ngModel)]="profileData.date_of_birth"
-                                required>
+                            <input type="date" name="dob" class="form-control" [(ngModel)]="profile.date_of_birth">
                         </div>
                     </div>
-                    }
 
-                    @if (currentStep === 2) {
-                    <div class="step-animation">
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Bio</label>
-                            <textarea name="bio" class="form-control" rows="4"
-                                placeholder="What are your academic interests?" [(ngModel)]="profileData.bio"
-                                required></textarea>
-                        </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold">Bio (Tell your story)</label>
+                        <textarea name="bio" class="form-control" rows="4"
+                            placeholder="Discuss your research, projects, or interests..."
+                            [(ngModel)]="profile.bio"></textarea>
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Skills (Comma separated)</label>
-                            <input type="text" name="skills" class="form-control"
-                                placeholder="Python, CAD, Project Management..." [(ngModel)]="profileData.skills">
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold">Cover Photo URL</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="bi bi-image"></i></span>
+                            <input type="text" name="cover" class="form-control"
+                                placeholder="https://example.com/cover.jpg" [(ngModel)]="profile.cover_photo_url">
                         </div>
                     </div>
-                    }
 
-                    <div class="d-flex justify-content-between mt-5">
-                        <button type="button" class="btn btn-link text-decoration-none text-pf-primary"
-                            (click)="prevStep()" [disabled]="currentStep === 1">Back</button>
+                    <div class="mb-5">
+                        <label class="form-label small fw-bold">Skills & Interests</label>
+                        <input type="text" name="skills" class="form-control"
+                            placeholder="Separate skills with commas (e.g. Python, PCB Design, LaTeX)"
+                            [(ngModel)]="profile.skills">
+                    </div>
 
-                        @if (currentStep < totalSteps) { <button type="button" class="btn btn-polifans px-4"
-                            (click)="nextStep()">Next Step</button>
-                            } @else {
-                            <button type="button" class="btn btn-success px-4 shadow" (click)="saveProfile()"
-                                [disabled]="profileForm.invalid">Finish Setup</button>
-                            }
+                    <div class="d-flex justify-content-between align-items-center pt-4 border-top">
+                        <span class="text-muted small">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Last updated: {{ profile.updated_at || 'Never' }}
+                        </span>
+                        <button type="button" class="btn btn-polifans px-5 py-2 rounded-pill shadow"
+                            (click)="saveProfile()">
+                            Save Profile
+                        </button>
                     </div>
                 </form>
 
