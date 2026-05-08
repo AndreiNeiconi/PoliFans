@@ -47,3 +47,8 @@ Deoarece proiectul este împărțit în două repository-uri distincte, trebuie 
 git clone [https://github.com/neiconidotdev/poli-fans-backend.git](https://github.com/neiconidotdev/poli-fans-backend.git)
 cd poli-fans-backend
 npm install
+
+**2. Server comand
+npm run start:dev
+# Serverul va porni implicit pe http://localhost:3000
+
