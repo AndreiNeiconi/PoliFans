@@ -16,23 +16,20 @@ export class ProfileComponent {
   userData: any = null;
 
   ngOnInit() {
-    this.loadUserData().subscribe(
-      {
-        next: (data) => this.userData,
-        error: (e) => console.log(e)
-      }
-    );
+    Promise.resolve( this.loadUserData()).then((result)=> console.log(result))
     
 
   }
 
-  loadUserData(): Observable<any> {
-    return this.profileService.getUserProfile().pipe(
-      tap((data: any) => {
-        this.userData = data; // Set the userData property with the response
-        console.log('User data set in component:', this.userData); // Debug log to check if userData is set
-      })
-    );
+  loadUserData() {
+
+    return this.profileService.getUserProfile().subscribe(
+      {
+        next: (data: any) => this.userData,
+        error:(e) => console.log(e)
+      }
+    )
+  
   }
 
   // Mock data for user's past contributions
