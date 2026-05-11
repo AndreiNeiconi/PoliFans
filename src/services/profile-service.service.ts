@@ -15,9 +15,9 @@ export class ProfileService { // Corrected name
 
   getUserProfile(): Observable<any> { 
     // 1. Retrieve the token from storage
-    const token = this.isLoggedIn$.subscribe(isLoggedIn => {
-      console.log('Is user logged in?', isLoggedIn); // Debug log to check login status
-    });
+    const token = localStorage.getItem('access_token');
+    // Update login state
+    this._isLoggedIn$.next(!!token);
     console.log('Retrieved token:', token); // Debug log to check token retrieval
     
     // 2. Attach it to the Authorization header
