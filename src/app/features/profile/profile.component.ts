@@ -16,28 +16,19 @@ export class ProfileComponent {
   userData: any = null;
 
   ngOnInit() {
-    
-    Promise.resolve(this.loadUserData().subscribe({
-      next: (data) => {
-        console.log('User data received in subscribe:', data); // Debug log to check if data is received
-      },
-      error: (err) => {
-        console.error('Error in subscribe:', err); // Debug log to check for errors in subscription
+    this.loadUserData().subscribe(
+      {
+        next: (data) => this.userData,
+        error: (e) => console.log(e)
       }
+    );
+    
 
-    }))
-    .then((result) => {
-      console.log('User data loaded successfully:', result); // Debug log to check if data is loaded
-      
-    }).catch((err) => {
-      console.error('Error loading user data:', err); // Debug log to check for errors
-    });
   }
 
   loadUserData(): Observable<any> {
     return this.profileService.getUserProfile().pipe(
-      // Tap into the observable to set userData when the response is received
-      tap((data: any) => { 
+      tap((data: any) => {
         this.userData = data; // Set the userData property with the response
         console.log('User data set in component:', this.userData); // Debug log to check if userData is set
       })
