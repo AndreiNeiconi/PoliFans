@@ -63,16 +63,11 @@ export class CreateProfileComponent {
     headline: this.profile.headline,
     bio: this.profile.bio,
     skills: this.profile.skills, // Asigură-te că backend-ul știe să primească text sau array
-    profile_picture_id: this.profile.profile_picture_id, // UUID-ul primit de la upload
-    cover_photo_id: this.profile.cover_photo_id         // UUID-ul primit de la upload
+    profile_picture_id: this.profile.profile_picture_id || null, // UUID-ul primit de la upload
+    cover_photo_id: this.profile.cover_photo_id || null      // UUID-ul primit de la upload
   };
      this.profile.updated_at = new Date().toISOString();
-     const dataToSave = {
-       ...this.profile
-       
-     }
-     delete dataToSave.profile_picture_url;
-     delete dataToSave.cover_photo_url;
+    
     
     // Send the data to NestJS!
     this.profileService.updateUserProfile(payload).subscribe({
