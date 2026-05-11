@@ -16,7 +16,12 @@ export class ProfileComponent {
   userData: any = null;
 
   ngOnInit() {
-    Promise.resolve( this.loadUserData()).then((result)=> console.log(result))
+    try {
+      this.loadUserData()
+    }
+    catch (err) {
+      console.log(err)
+    }
     
 
   }
