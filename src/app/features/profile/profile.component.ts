@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../../services/profile-service.service';
-import { RouterLink } from "@angular/router";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
   standalone: true,
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  imports: [RouterLink]
+  imports: [RouterLink, RouterLinkActive]
 })
 export class ProfileComponent {
   constructor(private profileService: ProfileService) { }
