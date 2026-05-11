@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../../services/profile-service.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  imports: [RouterLink]
 })
 export class ProfileComponent {
   constructor(private profileService: ProfileService) { }

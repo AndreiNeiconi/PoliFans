@@ -8,7 +8,8 @@
                         class="rounded-circle border border-4 border-white shadow" width="120">
                 </div>
                 <div class="mb-2">
-                    <button class="btn btn-outline-primary btn-sm rounded-pill me-2">Edit Profile</button>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill me-2" routerLink="\create-profile">Edit
+                        Profile</button>
                     <button class="btn btn-polifans btn-sm rounded-pill"><i class="bi bi-share"></i></button>
                 </div>
             </div>
@@ -17,7 +18,7 @@
                 <h4 class="fw-bold mb-0">{{ userData?.full_name }}</h4>
                 <p class="text-muted">{{ userData?.headline || 'No headline set' }}</p>
                 <p class="small text-dark mt-2" style="max-width: 600px;">
-                {{ userData?.bio || 'This user has not written a bio yet.' }}
+                    {{ userData?.bio || 'This user has not written a bio yet.' }}
                 </p>
             </div>
 
