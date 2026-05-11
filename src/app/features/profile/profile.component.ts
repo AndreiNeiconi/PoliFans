@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../../services/profile-service.service';
 import { RouterLink } from "@angular/router";
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +17,7 @@ export class ProfileComponent {
 
   ngOnInit() {
     
-    Promise.resolve(this.loadUserData())
+    Promise.resolve(this.loadUserData().subscribe())
     .then((result) => {
       console.log('User data loaded successfully:', result); // Debug log to check if data is loaded
       
@@ -24,16 +26,14 @@ export class ProfileComponent {
     });
   }
 
-  loadUserData() {
-    this.profileService.getUserProfile().subscribe({
-      next: (data) => {
-        this.userData = data;
-        console.log('User profile data:', this.userData); // Debug log to check received data
-      },
-      error: (err) => {
-        console.error('Error fetching user profile:', err);
-      }
-    });
+  loadUserData(): Observable<any> {
+    return this.profileService.getUserProfile().pipe(
+      // Tap into the observable to set userData when the response is received
+      tap((data: any) => { 
+        this.userData = data; // Set the userData property with the response
+        console.log('User data set in component:', this.userData); // Debug log to check if userData is set
+      })
+    );
   }
 
   // Mock data for user's past contributions

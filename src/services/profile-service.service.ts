@@ -26,7 +26,7 @@ export class ProfileService { // Corrected name
     });
 
     return this.http.get(`${environment.apiUrl}/profiles`, { headers });
-    console.log(this.http.get(`${environment.apiUrl}/profiles`, { headers }));
+    
   }
   //Create and edit profile
   updateUserProfile(profileData: any) {
