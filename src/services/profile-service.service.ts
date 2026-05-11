@@ -28,7 +28,7 @@ export class ProfileService { // Corrected name
   }
   //Create and edit profile
   updateUserProfile(profileData: any) {
-    const token = localStorage.getItem('acces_token');
+    const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
