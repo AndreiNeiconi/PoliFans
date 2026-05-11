@@ -19,6 +19,7 @@ export class ProfileComponent {
     this.profileService.getUserProfile().subscribe({
       next: (data) => {
         this.userData = data;
+        console.log('User profile data:', this.userData); // Debug log to check received data
       },
       error: (err) => {
         console.error('Error fetching user profile:', err);
