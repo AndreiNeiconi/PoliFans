@@ -14,7 +14,14 @@ export class ProfileComponent {
   userData: any = null;
 
   ngOnInit() {
-    this.loadUserData();
+    
+    Promise.resolve(this.loadUserData())
+    .then((result) => {
+      console.log('User data loaded successfully:', result); // Debug log to check if data is loaded
+      
+    }).catch((err) => {
+      console.error('Error loading user data:', err); // Debug log to check for errors
+    });
   }
 
   loadUserData() {
