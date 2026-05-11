@@ -57,7 +57,15 @@ export class CreateProfileComponent {
       }
     });
   }
-   saveProfile() {
+  saveProfile() {
+     const payload = {
+    date_of_birth: this.profile.date_of_birth,
+    headline: this.profile.headline,
+    bio: this.profile.bio,
+    skills: this.profile.skills, // Asigură-te că backend-ul știe să primească text sau array
+    profile_picture_id: this.profile.profile_picture_id, // UUID-ul primit de la upload
+    cover_photo_id: this.profile.cover_photo_id         // UUID-ul primit de la upload
+  };
      this.profile.updated_at = new Date().toISOString();
      const dataToSave = {
        ...this.profile
@@ -67,7 +75,7 @@ export class CreateProfileComponent {
      delete dataToSave.cover_photo_url;
     
     // Send the data to NestJS!
-    this.profileService.updateUserProfile(this.profile).subscribe({
+    this.profileService.updateUserProfile(payload).subscribe({
       next: (response) => {
         console.log('Profile successfully updated!', response);
         this.router.navigate(['/profile']); // Redirect only after success
