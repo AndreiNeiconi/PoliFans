@@ -17,7 +17,15 @@ export class ProfileComponent {
 
   ngOnInit() {
     
-    Promise.resolve(this.loadUserData().subscribe())
+    Promise.resolve(this.loadUserData().subscribe({
+      next: (data) => {
+        console.log('User data received in subscribe:', data); // Debug log to check if data is received
+      },
+      error: (err) => {
+        console.error('Error in subscribe:', err); // Debug log to check for errors in subscription
+      }
+
+    }))
     .then((result) => {
       console.log('User data loaded successfully:', result); // Debug log to check if data is loaded
       
