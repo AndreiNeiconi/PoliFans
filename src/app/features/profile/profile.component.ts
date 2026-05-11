@@ -16,12 +16,7 @@ export class ProfileComponent {
   userData: any = null;
 
   ngOnInit() {
-    try {
-      this.loadUserData()
-    }
-    catch (err) {
-      console.log(err)
-    }
+   this.loadUserData()
     
 
   }
@@ -30,7 +25,12 @@ export class ProfileComponent {
 
     return this.profileService.getUserProfile().subscribe(
       {
-        next: (data: any) => this.userData,
+        next: (data: any) => {
+          this.userData
+          console.log(this.userData);
+          console.log(data);
+
+        },
         error:(e) => console.log(e)
       }
     )
