@@ -26,7 +26,7 @@ export class ProfileComponent {
     return this.profileService.getUserProfile().subscribe(
       {
         next: (data: any) => {
-          this.userData
+          this.userData = data;
           console.log(this.userData);
           console.log(data);
 
