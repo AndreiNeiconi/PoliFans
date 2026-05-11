@@ -23,8 +23,8 @@ export class ProfileService { // Corrected name
       'Authorization': `Bearer ${token}`
     });
 
-    // 3. Send the GET request to the exact NestJS endpoint, including the headers
-    return this.http.get(`${environment.apiUrl}/profiles`, { headers }); 
+    return this.http.get(`${environment.apiUrl}/profiles`, { headers });
+    console.log(this.http.get(`${environment.apiUrl}/profiles`, { headers }));
   }
   //Create and edit profile
   updateUserProfile(profileData: any) {
