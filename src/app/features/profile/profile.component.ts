@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
   standalone: true,
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  imports: [RouterLink, RouterLinkActive]
+  imports: [RouterLink]
 })
 export class ProfileComponent {
   constructor(private profileService: ProfileService) { }

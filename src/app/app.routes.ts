@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'post', component: PostCreatorComponent, canActivate: [authGuard] },
-  { path: 'create-profile', component: CreateProfileComponent, canActivate: [authGuard] },
+  { path: 'create-profile', component: CreateProfileComponent },
   { path: '**', redirectTo: 'feed', canActivate: [authGuard] },
 ];
 
