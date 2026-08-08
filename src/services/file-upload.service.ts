@@ -8,15 +8,15 @@ import { environment } from '../environments/environment';
 })
 export class FileUploadService {
 
-  private readonly apiUrl = environment.apiUrl
+  private readonly apiUrl = `${environment.apiUrl}/file-uload`
   constructor(private http: HttpClient,) { }
   
-  uploadFile(file: File, folder: string): Observable<any> {
+  uploadFile(file: File): Observable<any> {
     const formData = new FormData();
 
     formData.append('file', file);
-    const params = new HttpParams().set('folder', folder);
-    return this.http.post(`${this.apiUrl}/upload`, formData, { params });
+    // const params = new HttpParams().set('folder', folder);
+    return this.http.post(`${this.apiUrl}/upload`, formData,);
   }
 
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FileUploadService } from '../../../services/file-upload.service';
+import { ProfileService } from '../../../services/profile-service.service';
 
 
 @Component({
@@ -11,6 +13,30 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./post.component.css']
 })
 export class PostCreatorComponent {
+
+  constructor(private FileUploadService:FileUploadService,private profileService:ProfileService){}
+  userData: any = null;
+  ngOnInit() {
+   
+    
+
+  }
+  loadUserData() {
+
+    return this.profileService.getUserProfile().subscribe(
+      {
+        next: (data: any) => {
+          this.userData = data;
+          console.log(this.userData);
+          console.log(data);
+
+        },
+        error:(e) => console.log(e)
+      }
+    )
+  
+  }
+  name = this.userData.name
   postData = {
     title: '',
     content: '',

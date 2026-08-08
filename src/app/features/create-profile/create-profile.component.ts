@@ -41,7 +41,7 @@ export class CreateProfileComponent {
     reader.readAsDataURL(file);
 
     // Upload la server
-    this.fileUploadServices.uploadFile(file, 'users').subscribe({
+    this.fileUploadServices.uploadFile(file).subscribe({
       next: (response) => {
         console.log('Upload reușit:', response);
         // Mapăm ID-ul primit către cheia corectă pentru DB
