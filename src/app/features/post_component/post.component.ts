@@ -18,7 +18,7 @@ export class PostCreatorComponent {
   userData: any = null;
   ngOnInit() {
    
-    
+    this.loadUserData()
 
   }
   loadUserData() {
@@ -75,7 +75,7 @@ export class PostCreatorComponent {
       this.isLoading = false;
       this.postData = { title: '', content: '', type: 'personal' };
       this.selectedFiles = [];
-      alert('Post shared successfully!');
+      alert('Post shared successfully!!');
     }, 1500);
   }
 }
