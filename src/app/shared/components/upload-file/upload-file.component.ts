@@ -21,6 +21,8 @@ export class UploadFileComponent {
       const formData = new FormData();
       formData.append("thumbnail",file);
       this.fileUploadService.uploadFile(file)
+      console.log("file upload")
+      console.log(file)
 
     }
 
