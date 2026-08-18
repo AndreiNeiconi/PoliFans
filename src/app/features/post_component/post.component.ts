@@ -16,26 +16,7 @@ export class PostCreatorComponent {
 
   constructor(private FileUploadService:FileUploadService,private profileService:ProfileService){}
   userData: any = null;
-  ngOnInit() {
-   
-    this.loadUserData();
 
-  }
-  loadUserData() {
-
-    return this.profileService.getUserProfile().subscribe(
-      {
-        next: (data: any) => {
-          this.userData = data;
-          console.log(this.userData);
-          console.log(data);
-
-        },
-        error:(e) => console.log(e)
-      }
-    )
-  
-  }
   postData = {
     title: '',
     content: '',
