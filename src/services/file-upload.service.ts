@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class FileUploadService {
 
-  private readonly apiUrl = `${environment.apiUrl}/file-uload`
+  private readonly apiUrl = `${environment.apiUrl}/file-upload`
   constructor(private http: HttpClient,) { }
   
   uploadFile(file: File): Observable<any> {
