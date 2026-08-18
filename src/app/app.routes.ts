@@ -10,32 +10,36 @@ import { ProfileComponent } from './features/profile/profile.component';
 import { authGuard } from '../services/auth-guard';
 import { PostCreatorComponent } from './features/post_component/post.component';
 import { CreateProfileComponent } from './features/create-profile/create-profile.component';
+import { UploadFileComponent } from './shared/components/upload-file/upload-file.component';
 
-export const routes: Routes = [
-  { path: '', redirectTo: 'messages', pathMatch: 'full' },
-  { path: 'feed', component: FeedComponent, canActivate: [authGuard] },
-  { path: 'discover', component: DiscoverComponent, canActivate: [authGuard] },
-  { path: 'messages', component: MessagingComponent, canActivate: [authGuard] },
-  { path: 'subscription', component: SubscriptionComponent, canActivate: [authGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
-  { path: 'post', component: PostCreatorComponent, canActivate: [authGuard] },
-  { path: 'create-profile', component: CreateProfileComponent, canActivate: [authGuard] },
-  { path: '**', redirectTo: 'feed', canActivate: [authGuard] },
-];
-
-// export const routes :Routes = [
+// export const routes: Routes = [
 //   { path: '', redirectTo: 'messages', pathMatch: 'full' },
-//   { path: 'feed', component: FeedComponent},
-//   { path: 'discover', component: DiscoverComponent},
-//   { path: 'messages', component: MessagingComponent},
-//   { path: 'subscription', component: SubscriptionComponent},
+//   { path: 'feed', component: FeedComponent, canActivate: [authGuard] },
+//   { path: 'discover', component: DiscoverComponent, canActivate: [authGuard] },
+//   { path: 'messages', component: MessagingComponent, canActivate: [authGuard] },
+//   { path: 'subscription', component: SubscriptionComponent, canActivate: [authGuard] },
 //   { path: 'login', component: LoginComponent },
 //   { path: 'register', component: RegisterComponent },
-//   { path: 'profile', component: ProfileComponent},
-//   { path: '**', redirectTo: 'feed'},
-  
+//   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+//   { path: 'post', component: PostCreatorComponent, canActivate: [authGuard] },
+//   { path: 'create-profile', component: CreateProfileComponent, canActivate: [authGuard] },
+//   {path: 'upload-file', component: UploadFileComponent},
+//   { path: '**', redirectTo: 'feed', canActivate: [authGuard] },
 // ];
+
+export const routes :Routes = [
+  { path: '', redirectTo: 'messages', pathMatch: 'full' },
+  { path: 'feed', component: FeedComponent},
+  { path: 'discover', component: DiscoverComponent},
+  { path: 'messages', component: MessagingComponent},
+  { path: 'subscription', component: SubscriptionComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent},
+  { path: 'post', component: PostCreatorComponent},
+  {path: 'upload-file', component: UploadFileComponent},
+  { path: '**', redirectTo: 'feed'},
+  
+];
 
 export class AppRoutingModule {}
