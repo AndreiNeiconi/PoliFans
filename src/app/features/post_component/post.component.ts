@@ -18,7 +18,7 @@ export class PostCreatorComponent {
   userData: any = null;
   ngOnInit() {
    
-    this.loadUserData()
+    this.loadUserData();
 
   }
   loadUserData() {
@@ -36,7 +36,6 @@ export class PostCreatorComponent {
     )
   
   }
-  name = this.userData.name
   postData = {
     title: '',
     content: '',
