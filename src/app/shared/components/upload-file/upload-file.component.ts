@@ -20,7 +20,14 @@ export class UploadFileComponent {
 
       const formData = new FormData();
       formData.append("thumbnail",file);
-      this.fileUploadService.uploadFile(file)
+      this.fileUploadService.uploadFile(file).subscribe(
+        {
+          next:(response) => {console.log("file uploded",response)},
+          error:(error) => {console.log("upload unsucsesfuly",error)}
+  
+        }
+
+      )
       console.log("file upload")
       console.log(file)
 
