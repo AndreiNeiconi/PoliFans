@@ -12,15 +12,17 @@ import { FileUploadService } from '../../../../services/file-upload.service';
 export class UploadFileComponent {
   fileName:string ='';
   constructor(private http:HttpClient,private fileUploadService:FileUploadService){}
-  onFileSelected(event:any){
-    const file:File = event.target.files[0];
+  onFileSelected(event:Event){
+    const input = event.target as HTMLInputElement
+
+    const file = input.files?.[0];
 
     if(file){
       this.fileName = file.name;
 
       const formData = new FormData();
-      formData.append("thumbnail",file);
-      this.fileUploadService.uploadFile(file).subscribe(
+      formData.append("file",file);
+      this.fileUploadService.uploadFile(formData).subscribe(
         {
           next:(response) => {console.log("file uploded",response)},
           error:(error) => {console.log("upload unsucsesfuly",error)}

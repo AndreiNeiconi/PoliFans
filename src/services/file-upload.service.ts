@@ -11,10 +11,9 @@ export class FileUploadService {
   private readonly apiUrl = `${environment.apiUrl}`
   constructor(private http: HttpClient,) { }
   
-  uploadFile(file: File): Observable<any> {
-    const formData = new FormData();
+  uploadFile(formData:FormData): Observable<any> {
 
-    formData.append('file', file);
+
     // const params = new HttpParams().set('folder', folder);
     return this.http.post(`${this.apiUrl}file-upload/upload`, formData);
   }
