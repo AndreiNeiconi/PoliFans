@@ -28,8 +28,6 @@ export class UploadFileComponent {
         }
 
       )
-      console.log("file upload")
-      console.log(file)
 
     }
 
