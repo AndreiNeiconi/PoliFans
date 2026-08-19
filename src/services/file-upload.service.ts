@@ -15,7 +15,7 @@ export class FileUploadService {
 
     console.log('UPLOAD URL:', this.apiUrl);
     // const params = new HttpParams().set('folder', folder);
-    return this.http.post(`${this.apiUrl}file-upload/upload`, formData);
+    return this.http.post(`${this.apiUrl}/file-upload/upload`, formData);
   }
 
 }
