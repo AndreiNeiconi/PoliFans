@@ -12,7 +12,8 @@ export class FileUploadService {
   constructor(private http: HttpClient,) { }
   
   uploadFile(formData:FormData): Observable<any> {
-    formData.append('purpose', 'profile_image');
+    formData.append('purpose', 'PROFILE_IMAGE');
+    console.log(formData)
     // const params = new HttpParams().set('folder', folder);
     return this.http.post(`${this.apiUrl}/file-upload/upload`, formData);
   }
