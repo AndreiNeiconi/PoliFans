@@ -1,21 +1,19 @@
-import { isLoginSercice } from './isLogin_service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService { // Corrected name
-
-  constructor(private http: HttpClient,private isLoginSercice:isLoginSercice) { }
+export class isLoginSercice {
+    constructor(private http: HttpClient) { }
   
   private _isLoggedIn$ = new BehaviorSubject<boolean>(!!localStorage.getItem('access_token'));
   public isLoggedIn$: Observable<boolean> = this._isLoggedIn$.asObservable();
 
-  getUserProfile(): Observable<any> { 
-    // 1. Retrieve the token from storage
+  isLogn_func(){
     const token = localStorage.getItem('access_token');
     // Update login state
     this._isLoggedIn$.next(!!token);
@@ -25,19 +23,6 @@ export class ProfileService { // Corrected name
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    
-    
-
-    return this.http.get(`${environment.apiUrl}/profiles`, { headers });
-    
+    return headers;
   }
-  //Create and edit profile
-  updateUserProfile(profileData: any) {
-    const token = localStorage.getItem('access_token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.put(`${environment.apiUrl}/profiles`, profileData, { headers });
-  }
-
 }
