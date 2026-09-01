@@ -29,23 +29,31 @@ export class CreateProfileComponent {
   // <-- Inject the ProfileService here
   constructor(private router: Router, private profileService: ProfileService, private fileUploadServices: FileUploadService) { }
   
-  onFileChange(event: any, field: string) {
-    const file = event.target.files[0]; // Corectat: .files
-    if (!file) return;
+  onFileChange(event: Event, targetField: 'profile_picture_url' | 'cover_photo_url'
+  ): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
 
-    // Preview local pentru UX
+    if (!file) return;
+    // Display a local preview immediately.
     const reader = new FileReader();
     reader.onload = (e: any) => {
-      this.profile[field] = e.target.result;
+      this.profile[targetField] = e.target.result;
     };
+
+    const FormDataPayload = new FormData()
+    FormDataPayload.append("file",file);
+    FormDataPayload.append("purpose","PROFILE_IMAGE")
+    // Preview local pentru UX
+    
     reader.readAsDataURL(file);
 
     // Upload la server
-    this.fileUploadServices.uploadFile(file).subscribe({
+    this.fileUploadServices.uploadFile(FormDataPayload).subscribe({
       next: (response) => {
         console.log('Upload reușit:', response);
         // Mapăm ID-ul primit către cheia corectă pentru DB
-        if (field === 'profile_picture_url') {
+        if (targetField === 'profile_picture_url') {
           this.profile.profile_picture_id = response.id;
         } else {
           this.profile.cover_photo_id = response.id;
