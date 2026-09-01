@@ -12,30 +12,32 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  registerData = { first_name: '', last_name: '', username: '', email: '', password: '' };
+  registerData = { first_name: '', last_name: '', email: '', password: '' };
   isLoading = false;
   passwordVisible = false; // Controls the eye-icon toggle
 
   constructor(private router: Router,private authService: AuthService) {}
 
+  get generatedUsername(): string {
+    const email = this.registerData.email.trim();
+
+    if (!email.includes('@')) {
+      return '';
+    }
+
+    return email.split('@')[0];
+  }
+
+
   onRegister(form: NgForm): void {
   if (form.invalid) return;
   this.isLoading = true;
 
-  // Split "Andrei Ionescu" into first and last name
-  // const nameParts = this.registerData.fullName.trim().split(' ');
-    const firstName = this.registerData.first_name.trim();  
-    const lastName = this.registerData.last_name.trim() || ' '; // Provide a default value if last name is empty
-
-  
-  // Generate a username from the email (e.g., andrei.ionescu@studentup.ro -> andrei.ionescu)
-  const generatedUsername = this.registerData.email.split('@')[0];
-
   const payload = {
-    first_name: firstName,
-    last_name: lastName,
-    username: generatedUsername,
-    email: this.registerData.email,
+    first_name: this.registerData.first_name.trim(),
+    last_name: this.registerData.last_name.trim(),
+    username: this.generatedUsername,
+    email: this.registerData.email.trim(),
     password_hash: this.registerData.password
   };
 

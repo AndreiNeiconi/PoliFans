@@ -44,11 +44,22 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Username</label>
+                        <label class="form-label small fw-bold">
+                            Your Generated Username
+                        </label>
+
                         <div class="input-group">
-                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-person"></i></span>
-                            <input type="text" name="username" class="form-control bg-light border-start-0"
-                                placeholder="e.g. Ionescu19" [(ngModel)]="registerData.username" required>
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="bi bi-person"></i>
+                            </span>
+
+                            <input type="text" class="form-control bg-light border-start-0" [value]="generatedUsername"
+                                placeholder="Generated from your email" readonly>
+                        </div>
+
+                        <div *ngIf="generatedUsername" class="form-text">
+                            Your username will be
+                            <strong>{{ generatedUsername }}</strong>.
                         </div>
                     </div>
 
