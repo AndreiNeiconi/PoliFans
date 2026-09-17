@@ -13,8 +13,12 @@ export class FileUploadService {
   
   uploadFile(formData:FormData): Observable<any> {
   
-    // const params = new HttpParams().set('folder', folder);
-    return this.http.post(`${this.apiUrl}/file-upload/upload`, formData);
+    const token = localStorage.getItem('access_token');
+    return this.http.post(`${this.apiUrl}/file-upload/upload`, formData,{
+      headers: new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+  }),
+    });
   }
 
 }
