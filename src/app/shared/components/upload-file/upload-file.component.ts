@@ -21,8 +21,8 @@ export class UploadFileComponent {
       this.fileName = file.name;
 
       const formData = new FormData();
-      formData.append("file",file);
       formData.append("purpose","PROFILE_IMAGE")
+      formData.append("file",file);
       console.log(formData)
       this.fileUploadService.uploadFile(formData).subscribe(
         {
