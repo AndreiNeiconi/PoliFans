@@ -1,5 +1,5 @@
 export const environment = {
 
     production: false,
-    apiUrl: 'http://neiconidotdev.duckdns.org:3000'
+    apiUrl: 'http://polofans.duckdns.org:3000'
 };
