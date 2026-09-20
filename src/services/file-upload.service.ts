@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 export class FileUploadService {
 
   private readonly apiUrl = `${environment.apiUrl}`
-  constructor(private http: HttpClient,) { }
+  constructor(private http: HttpClient) { }
   
   uploadFile(formData:FormData): Observable<any> {
   
