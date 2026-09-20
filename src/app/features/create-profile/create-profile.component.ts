@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProfileService } from '../../../services/profile-service.service'; // <-- Import the service
+import { firstValueFrom } from 'rxjs';
+import { ProfileService } from '../../../services/profile-service.service';
 import { FileUploadService } from '../../../services/file-upload.service';
+
+type PictureField = 'profile_picture_url' | 'cover_photo_url';
 
 @Component({
   selector: 'app-create-profile',
@@ -12,94 +15,74 @@ import { FileUploadService } from '../../../services/file-upload.service';
   styleUrls: ['./create-profile.component.css']
 })
 export class CreateProfileComponent {
-  profile:any = {
-    id: null,
-    date_of_birth: '',
-    headline: '',
-    bio: '',
-    profile_picture_url: '',
-    cover_photo_url: '',
-    posts_count: 0,
-    followers_count: 0,
-    following_count: 0,
-    skills: '',
-    updated_at: ''
+  profile: any = {
+    date_of_birth: '', headline: '', bio: '', skills: '',
+    profile_picture_url: '', cover_photo_url: '', updated_at: ''
   };
+  saving = false;
+  private selectedFiles: Partial<Record<PictureField, File>> = {};
+  private uploadedIds: Partial<Record<PictureField, string>> = {};
 
-  // <-- Inject the ProfileService here
-  constructor(private router: Router, private profileService: ProfileService, private fileUploadServices: FileUploadService) { }
-  
-  onFileChange(event: Event, targetField: 'profile_picture_url' | 'cover_photo_url'
-  ): void {
+  constructor(
+    private router: Router,
+    private profileService: ProfileService,
+    private fileUploadServices: FileUploadService
+  ) {}
+
+  onFileChange(event: Event, field: PictureField): void {
+    if (this.saving) return;
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
-
     if (!file) return;
-    // Display a local preview immediately.
+    this.selectedFiles[field] = file;
+    delete this.uploadedIds[field];
     const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.profile[targetField] = e.target.result;
+    reader.onload = () => {
+      if (this.selectedFiles[field] === file) {
+        this.profile[field] = reader.result;
+      }
     };
-
-    const FormDataPayload = new FormData()
-    FormDataPayload.append("file",file);
-    FormDataPayload.append("purpose","PROFILE_IMAGE")
-    // Preview local pentru UX
-    
     reader.readAsDataURL(file);
+  }
 
-    // Upload la server
-    this.fileUploadServices.uploadFile(FormDataPayload).subscribe({
-      next: (response) => {
-        console.log('Upload reușit:', response);
-        // Mapăm ID-ul primit către cheia corectă pentru DB
-        if (targetField === 'profile_picture_url') {
-          this.profile.profile_picture_id = response.id;
-        } else {
-          this.profile.cover_photo_id = response.id;
+  async saveProfile(): Promise<void> {
+    if (this.saving) return;
+    const payload: Record<string, unknown> = {};
+    for (const key of ['date_of_birth', 'headline', 'bio', 'skills']) {
+      const value = this.profile[key];
+      if (typeof value === 'string' && value.trim()) {
+        payload[key] = value.trim();
+      }
+    }
+    // An empty Save does not upload or update anything.
+    if (!Object.keys(payload).length && !Object.keys(this.selectedFiles).length) return;
+
+    this.saving = true;
+    try {
+      const fields: PictureField[] = ['profile_picture_url', 'cover_photo_url'];
+      for (const field of fields) {
+        const file = this.selectedFiles[field];
+        if (!file) continue;
+        if (!this.uploadedIds[field]) {
+          const form = new FormData();
+          form.append('file', file);
+          form.append('purpose', field === 'profile_picture_url' ? 'profile_image' : 'cover_image');
+          const response = await firstValueFrom(this.fileUploadServices.uploadFile(form));
+          if (!response?.id) throw new Error('Upload response is missing its image ID');
+          this.uploadedIds[field] = response.id;
         }
-      },
-      error: (err) => {
-        console.error('Eroare la upload:', err);
-        alert('Încărcarea imaginii a eșuat!');
+        const key = field === 'profile_picture_url' ? 'profile_picture_id' : 'cover_photo_id';
+        payload[key] = this.uploadedIds[field];
       }
-    });
+      await firstValueFrom(this.profileService.updateUserProfile(payload));
+      this.selectedFiles = {};
+      this.uploadedIds = {};
+      await this.router.navigate(['/profile']);
+    } catch (error) {
+      console.error('Could not save profile:', error);
+      alert('Could not finish saving. Please try again.');
+    } finally {
+      this.saving = false;
+    }
   }
-  saveProfile() {
-     const payload = {
-    date_of_birth: this.profile.date_of_birth,
-    headline: this.profile.headline,
-    bio: this.profile.bio,
-    skills: this.profile.skills, // Asigură-te că backend-ul știe să primească text sau array
-    profile_picture_id: this.profile.profile_picture_id || null, // UUID-ul primit de la upload
-    cover_photo_id: this.profile.cover_photo_id || null      // UUID-ul primit de la upload
-  };
-     this.profile.updated_at = new Date().toISOString();
-    
-    
-    // Send the data to NestJS!
-    this.profileService.updateUserProfile(payload).subscribe({
-      next: (response) => {
-        console.log('Profile successfully updated!', response);
-        this.router.navigate(['/profile']); // Redirect only after success
-      },
-      error: (err) => {
-        console.error('Error updating profile:', err);
-      }
-    });
-  }
-  
-  }
-
-  // onFileChange(event: any, targetField: 'profile_picture_url' | 'cover_photo_url') {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = (e: any) => {
-  //       this.profile[targetField] = e.target.result;
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
-
- 
+}
