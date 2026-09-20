@@ -1,14 +1,23 @@
 <div class="container py-4">
     <div class="pf-card overflow-hidden mb-4">
-        <div class="profile-cover"></div>
+        <div class="profile-cover" [style.background-image]="userData?.cover_photo_id
+    ? 'url(http://polifans.duckdns.org:3000/imag-url-system/' + userData.cover_photo_id + ')'
+    : null" style="background-size: cover; background-position: center;">
+        </div>
         <div class="px-4 pb-4">
             <div class="d-flex justify-content-between align-items-end profile-header-content">
                 <div class="profile-avatar-wrapper">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Andrei"
-                        class="rounded-circle border border-4 border-white shadow" width="120">
+                    @if (userData?.profile_picture_id) {
+                    <img [ngSrc]="'http://polifans.duckdns.org:3000/imag-url-system/' + userData.profile_picture_id"
+                        alt="Profile picture" class="rounded-circle border border-4 border-white shadow" width="120"
+                        height="120">
+                    } @else {
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Andrei" alt="Default profile picture"
+                        class="rounded-circle border border-4 border-white shadow" width="120" height="120">
+                    }
                 </div>
                 <div class="mb-2">
-                    <button class="btn btn-outline-primary btn-sm rounded-pill me-2" routerLink="/create-profile" >Edit
+                    <button class="btn btn-outline-primary btn-sm rounded-pill me-2" routerLink="/create-profile">Edit
                         Profile</button>
                     <button class="btn btn-polifans btn-sm rounded-pill"><i class="bi bi-share"></i></button>
                 </div>

@@ -3,13 +3,14 @@ import { ProfileService } from '../../../services/profile-service.service';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  imports: [RouterLink]
+  imports: [RouterLink, NgOptimizedImage]
 })
 export class ProfileComponent {
   constructor(private profileService: ProfileService) { }
@@ -29,6 +30,7 @@ export class ProfileComponent {
           this.userData = data;
           console.log(this.userData);
           console.log(data);
+          return this.userData
 
         },
         error:(e) => console.log(e)
