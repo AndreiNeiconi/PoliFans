@@ -65,8 +65,8 @@ export class CreateProfileComponent {
         if (!file) continue;
         if (!this.uploadedIds[field]) {
           const form = new FormData();
-          form.append('file', file);
           form.append('purpose', field === 'profile_picture_url' ? 'profile_image' : 'cover_image');
+          form.append('file', file);
           const response = await firstValueFrom(this.fileUploadServices.uploadFile(form));
           if (!response?.id) throw new Error('Upload response is missing its image ID');
           this.uploadedIds[field] = response.id;
