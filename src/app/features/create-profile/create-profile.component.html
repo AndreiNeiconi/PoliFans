@@ -70,9 +70,13 @@
                         <div class="text-muted x-small">
                             Last Synced: {{ profile.updated_at || 'Pending' }}
                         </div>
-                        <button type="button" class="btn btn-polifans px-5 py-2 rounded-pill shadow"
-                            [disabled]="profileForm.invalid" (click)="saveProfile()">
-                            Save Changes
+                        <button
+                                type="button"
+                                class="btn btn-polifans px-5 py-2 rounded-pill shadow"
+                                [disabled]="saving"
+                                (click)="saveProfile()">
+                                {{ saving ? 'Saving...' : 'Save Changes' }}
+
                         </button>
                     </div>
                 </form>
