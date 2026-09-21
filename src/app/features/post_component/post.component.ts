@@ -1,6 +1,7 @@
+import { PostCreationService } from './../../../services/post-creation.service';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { FileUploadService } from '../../../services/file-upload.service';
 import { ProfileService } from '../../../services/profile-service.service';
 
@@ -14,7 +15,7 @@ import { ProfileService } from '../../../services/profile-service.service';
 })
 export class PostCreatorComponent {
 
-  constructor(private FileUploadService:FileUploadService,private profileService:ProfileService){}
+  constructor(private FileUploadService:FileUploadService,private profileService:ProfileService,private postCreationService:PostCreationService){}
   userData: any = null;
 
   postData = {
@@ -45,17 +46,30 @@ export class PostCreatorComponent {
     return 'bi-file-earmark';
   }
 
-  submitPost(): void {
+  submitPost(): void{
+    if (this.isLoading) return;
+
     this.isLoading = true;
-    console.log('Post Data:', this.postData);
-    console.log('Files:', this.selectedFiles);
-    
-    // Simulate API delay
-    setTimeout(() => {
-      this.isLoading = false;
-      this.postData = { title: '', content: '', type: 'personal' };
-      this.selectedFiles = [];
-      alert('Post shared successfully!!');
-    }, 1500);
+
+    this.postCreationService.create_post(this.postData).subscribe(
+      {
+        next: (response) => {
+          console.log('Post succesfuly',response);
+
+          this.postData = {
+            title: '',
+            content: '',
+            type:'personal'
+          }
+          this.isLoading = false;
+
+        },
+        error:(err)=>{
+          console.log('Post creation failed',err);
+          this.isLoading = false;
+        }
+      }
+      
+    );
   }
 }
