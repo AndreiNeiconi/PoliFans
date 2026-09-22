@@ -8,5 +8,22 @@ import { RouterLink } from "@angular/router";
   styleUrl: './feed.component.css'
 })
 export class FeedComponent {
+  constructor(private postCreation:PostCreationService){}
+  UserPost:UserPost[]=[];
 
+  ngOnInit(){
+    loadPost();
+  }
+  loadPost(){
+    return this.PostCreationService.get_post().subscribe({
+      next:(post)=>{
+        this.UserPost = post
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+      
+
+    })
+  }
 }
