@@ -8,7 +8,7 @@
                     What are you working on, Andrei?
                 </button>
             </div>
-
+          @for(post of userPost; track post.id_post){
             <div class="pf-card mb-4 overflow-hidden">
                 <div class="p-3 d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -16,15 +16,15 @@
                             width="40">
                         <div>
                             <h6 class="mb-0 fw-bold">Felix Radu</h6>
-                            <small class="text-muted">Automotive Design • 15m ago</small>
+                            <small class="text-muted">Automotive Design • 15 min ago</small>
                         </div>
                     </div>
                     <button class="btn btn-link text-dark"><i class="bi bi-three-dots"></i></button>
                 </div>
 
                 <div class="px-3 pb-3">
-                    <p>Check out my latest 3D render for the Propulsion Systems exam. I've attached the .blend file
-                        below for anyone interested! 🚀</p>
+                    <h3><strong>{{post.title}}</strong></h3>
+                    <p>{{post.content}}</p>
                     <div class="post-attachment p-4 rounded bg-light border d-flex align-items-center gap-3">
                         <i class="bi bi-file-earmark-zip-fill fs-2 text-primary"></i>
                         <div>
@@ -34,6 +34,7 @@
                         <button class="btn btn-polifans btn-sm ms-auto">Download</button>
                     </div>
                 </div>
+            }
 
                 <div class="p-2 border-top d-flex justify-content-around">
                     <button class="btn btn-hover flex-grow-1"><i class="bi bi-heart me-2"></i> Like</button>
