@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { NgOptimizedImage } from '@angular/common';
+import { PostCreationService, UserPost } from '../../../services/post-creation.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,12 +14,13 @@ import { NgOptimizedImage } from '@angular/common';
   imports: [RouterLink, NgOptimizedImage]
 })
 export class ProfileComponent {
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService,private postCreationService:PostCreationService) { }
   userData: any = null;
+  userPosts: UserPost[] = [];
 
   ngOnInit() {
    this.loadUserData()
-    
+   this.loadPost()
 
   }
 
@@ -38,13 +40,18 @@ export class ProfileComponent {
     )
   
   }
+  loadPost(){
+    return this.postCreationService.get_post().subscribe({
+      next:(posts) =>{
+        this.userPosts = posts
+      },
+      error: (err) =>{
+        console.error('Could not load posts:', err);
+      }
+    })
+  }
 
   // Mock data for user's past contributions
-  userPosts = [
-    { id: 1, title: 'Distributed Systems Labs', date: '2 days ago', category: 'Notes' },
-    { id: 2, title: 'Angular 19 Project Shell', date: '1 week ago', category: 'Code' },
-    { id: 3, title: 'Microservices Architecture', date: 'Mar 12', category: 'Research' },
-    { id: 4, title: 'SQL Optimization Guide', date: 'Feb 28', category: 'PDF' }
-  ];
+  
   
 }

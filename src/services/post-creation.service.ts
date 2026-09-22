@@ -5,6 +5,12 @@ type PostComponent= {
   title:string,
   content:string
 }
+export interface UserPost {
+  id_post: string;
+  title: string;
+  content: string | null;
+  create_at: string | null;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +28,15 @@ export class PostCreationService {
   }),
     });
   }
+  get_post() {
+  const token = localStorage.getItem('access_token');
+
+  return this.http.get<UserPost[]>(`${this.apiUrl}/post`, {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    }),
+  });
+}
 }
 
 

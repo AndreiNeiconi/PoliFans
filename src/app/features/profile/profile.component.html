@@ -60,7 +60,7 @@
             </ul>
 
             <div class="row g-3">
-                @for (post of userPosts; track post.id) {
+                @for (post of userPosts; track post.id_post) {
                 <div class="col-md-6 col-lg-4">
                     <div class="pf-card p-0 h-100 overflow-hidden post-preview">
                         <div class="post-img-placeholder d-flex align-items-center justify-content-center">
@@ -69,8 +69,8 @@
                         <div class="p-3">
                             <h6 class="fw-bold mb-1 text-truncate">{{ post.title }}</h6>
                             <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">{{ post.date }}</small>
-                                <span class="badge bg-light text-primary">{{ post.category }}</span>
+                                <small class="text-muted">{{ post.create_at }}</small>
+                                <!-- <span class="badge bg-light text-primary">{{ post.category }}</span> -->
                             </div>
                         </div>
                     </div>
