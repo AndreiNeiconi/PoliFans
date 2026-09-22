@@ -64,9 +64,10 @@ export class PostCreatorComponent {
           this.isLoading = false;
 
         },
-        error:(err)=>{
-          console.log('Post creation failed',err);
+        error:(error)=>{
+          console.log('Post creation failed',error);
           this.isLoading = false;
+
         }
       }
       
