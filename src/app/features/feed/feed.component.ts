@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
+import { PostCreationService, UserPost } from '../../../services/post-creation.service';
 
 @Component({
   selector: 'app-feed',
@@ -12,10 +13,10 @@ export class FeedComponent {
   UserPost:UserPost[]=[];
 
   ngOnInit(){
-    loadPost();
+    this.loadPost();
   }
   loadPost(){
-    return this.PostCreationService.get_post().subscribe({
+    return this.postCreation.get_post().subscribe({
       next:(post)=>{
         this.UserPost = post
       },
