@@ -34,31 +34,28 @@ export class FeedComponent {
   getProfilePictureUrl(imageId: string): string {
   return `${environment.apiUrl}/imag-url-system/${imageId}`;
 }
-  getRelative_time(timestamp:string){
-    const createdAt = new Date(timestamp);
-    const createdAtMs = createdAt.getTime();
-    const curentTime = Date.now()
-    const elapsed_miliseconds = curentTime -createdAtMs;
-    const elapsed_second = curentTime/1000;
-    const elapsed_minutes = curentTime/60000;
-    const elapsed_hours = curentTime/3600000;
-    const elapsed_days = curentTime/86400000;
-    if(elapsed_miliseconds<1000){
-      return 'now';
-    }
-    else if(elapsed_miliseconds<60000)
-    {
-      return curentTime - elapsed_second;
-    }
-    else if(elapsed_miliseconds< 3600000){
-      return curentTime - elapsed_minutes
-    }
-    else if(elapsed_miliseconds< 86400000){
-      return curentTime - elapsed_hours
-    }
-    else if(elapsed_miliseconds> 86400000){
-      return curentTime - elapsed_days
-    }
-    
+  getRelative_time(timestamp: string | null): string {
+  if (!timestamp) return '';
+
+  const createdAtMs = new Date(timestamp).getTime();
+  if (Number.isNaN(createdAtMs)) return '';
+
+  const elapsedMs = Math.max(0, Date.now() - createdAtMs);
+
+  if (elapsedMs < 60_000) return 'Just now';
+
+  const formatter = new Intl.RelativeTimeFormat('en', {
+    numeric: 'always',
+  });
+
+  if (elapsedMs < 3_600_000) {
+    return formatter.format(-Math.floor(elapsedMs / 60_000), 'minute');
   }
+
+  if (elapsedMs < 86_400_000) {
+    return formatter.format(-Math.floor(elapsedMs / 3_600_000), 'hour');
+  }
+
+  return formatter.format(-Math.floor(elapsedMs / 86_400_000), 'day');
+}
 }
