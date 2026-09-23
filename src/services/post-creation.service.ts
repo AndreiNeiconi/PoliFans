@@ -9,7 +9,9 @@ export interface UserPost {
   id_post: string;
   title: string;
   content: string | null;
-  create_at: string | null;
+  create_at: string | "null";
+  username:string | null;
+  profile_picture_id:string | null;
 }
 @Injectable({
   providedIn: 'root'
