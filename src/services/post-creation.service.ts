@@ -40,7 +40,7 @@ export class PostCreationService {
   get_feed() {
   const token = localStorage.getItem('access_token');
 
-  return this.http.get<UserPost[]>(`${this.apiUrl}/feed`, {
+  return this.http.get<UserPost[]>(`${this.apiUrl}/post/feed`, {
     headers: new HttpHeaders({
       Authorization: `Bearer ${token}`,
     }),
