@@ -13,10 +13,10 @@ export class FeedComponent {
   UserPost:UserPost[]=[];
 
   ngOnInit(){
-    this.loadPost();
+    this.loadFeed();
   }
-  loadPost(){
-    return this.postCreation.get_post().subscribe({
+  loadFeed(){
+    return this.postCreation.get_feed().subscribe({
       next:(post)=>{
         this.UserPost = post
       },

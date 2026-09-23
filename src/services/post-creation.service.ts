@@ -36,7 +36,16 @@ export class PostCreationService {
       Authorization: `Bearer ${token}`,
     }),
   });
-}
+  }
+  get_feed() {
+  const token = localStorage.getItem('access_token');
+
+  return this.http.get<UserPost[]>(`${this.apiUrl}/feed`, {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    }),
+  });
+  } 
 }
 
 
