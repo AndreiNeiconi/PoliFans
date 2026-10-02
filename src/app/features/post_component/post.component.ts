@@ -34,6 +34,36 @@ export class PostCreatorComponent {
         this.selectedFiles.push(file);
       }
     }
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      const file = this.selectedFiles[i];
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        alert(`File "${file.name}" exceeds the 5MB size limit and will be removed.`);
+        this.selectedFiles.splice(i, 1);
+        i--; // Adjust index after removal
+      }
+      if (!['image/png', 'image/jpeg', 'application/pdf'].includes(file.type)) {
+        alert(`File "${file.name}" is not a supported format and will be removed.`);
+        this.selectedFiles.splice(i, 1);
+        i--; // Adjust index after removal
+
+        this.FileUploadService.uploadFile(files[i],).subscribe({
+          next: (response) => {
+            console.log('Upload successful:', response);
+            // Handle the response as needed
+          },
+          error: (err) => {
+            console.error('Upload error:', err);
+            alert(`Failed to upload file "${file.name}".`);
+          }
+        });
+        
+      }
+
+
+      
+    }
+    
+    
   }
 
   removeFile(index: number): void {
