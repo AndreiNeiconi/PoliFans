@@ -21,6 +21,7 @@ export class PostCreatorComponent {
   postData = {
     title: '',
     content: '',
+    content_id: '',
     type: 'personal' // Default value
   };
 
@@ -46,16 +47,7 @@ export class PostCreatorComponent {
         this.selectedFiles.splice(i, 1);
         i--; // Adjust index after removal
 
-        this.FileUploadService.uploadFile(files[i],).subscribe({
-          next: (response) => {
-            console.log('Upload successful:', response);
-            // Handle the response as needed
-          },
-          error: (err) => {
-            console.error('Upload error:', err);
-            alert(`Failed to upload file "${file.name}".`);
-          }
-        });
+        
         
       }
 
@@ -76,12 +68,27 @@ export class PostCreatorComponent {
     return 'bi-file-earmark';
   }
 
-  submitPost(): void{
+  submitPost(file:File[]){
     if (this.isLoading) return;
 
     this.isLoading = true;
+    const formData = new FormData
+    
+    formData.append('purpose' ,'post_image' );
+    formData.append('file', file[0]);
+    this.FileUploadService.uploadFile(formData).subscribe({
+          next: (response) => {
+            console.log('Upload successful:', response);
+            this.postData.content_id = response;
+            // Handle the response as needed
+          },
+          error: (err) => {
+            console.error('Upload error:', err);
+            alert(`Failed to upload file "${file[0].name}".`);
+          }
+        });
 
-    this.postCreationService.create_post(this.postData).subscribe(
+    return this.postCreationService.create_post(this.postData).subscribe(
       {
         next: (response) => {
           console.log('Post succesfuly',response);
@@ -89,6 +96,7 @@ export class PostCreatorComponent {
           this.postData = {
             title: '',
             content: '',
+            content_id: '',
             type:'personal'
           }
           this.isLoading = false;
@@ -102,5 +110,6 @@ export class PostCreatorComponent {
       }
       
     );
+    
   }
 }
