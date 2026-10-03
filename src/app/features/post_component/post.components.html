@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <form #postForm="ngForm" (ngSubmit)="submitPost()">
+    <form #postForm="ngForm" (ngSubmit)="submitPost(selectedFiles)">
         <div class="btn-group w-100 mb-4 rounded-3 p-1 bg-light">
             <input type="radio" class="btn-check" name="postType" id="personal" [(ngModel)]="postData.type"
                 value="personal">
