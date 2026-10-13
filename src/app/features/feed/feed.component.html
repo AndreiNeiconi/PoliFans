@@ -46,7 +46,7 @@
                     <h3><strong>{{ post.title }}</strong></h3>
                     <p>{{ post.content }}</p>
                     @if(post.document_id){
-                    <img [ngSrc]="getPostContent(post.document_id)">
+                    <img [ngSrc]="getProfilePictureUrl(post.document_id)" alt="imag" width="400" height="400">
                     <div
                         class="file-download-card d-flex align-items-center justify-content-between p-3 border rounded-3 bg-white shadow-sm">
                         <!-- Secțiunea cu iconiță și detalii fișier -->
