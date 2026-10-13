@@ -115,7 +115,7 @@ export class PostCreatorComponent {
 
     }
 
-    return this.postCreationService.create_post(this.postData).subscribe(
+    return this.postCreationService.create_media_post(this.postData).subscribe(
       {
         next: (response) => {
           console.log('Post succesfuly',response);

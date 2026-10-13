@@ -24,7 +24,7 @@ export class PostCreationService {
   
   create_media_post(post:PostComponent){
    const token = localStorage.getItem('access_token');
-    return this.http.post(`${this.apiUrl}/media-post`,post,{
+    return this.http.post(`${this.apiUrl}/post/media-post`,post,{
       headers: new HttpHeaders({
     Authorization: `Bearer ${token}`,
   }),
@@ -32,7 +32,7 @@ export class PostCreationService {
   }
   create_post(post:PostComponent){
    const token = localStorage.getItem('access_token');
-    return this.http.post(`${this.apiUrl}/media-post`,post,{
+    return this.http.post(`${this.apiUrl}/post`,post,{
       headers: new HttpHeaders({
     Authorization: `Bearer ${token}`,
   }),
