@@ -18,6 +18,7 @@ export class FeedComponent {
 
   ngOnInit(){
     this.loadFeed();
+    
   }
   loadFeed(){
     return this.postCreation.get_feed().subscribe({
