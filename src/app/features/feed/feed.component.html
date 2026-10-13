@@ -4,7 +4,8 @@
 
             <!-- Create Post Trigger -->
             <div class="pf-card p-3 mb-4 d-flex align-items-center gap-3">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User" class="rounded-circle" width="45" alt="Avatar">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User" class="rounded-circle" width="45"
+                    alt="Avatar">
                 <button class="btn btn-light flex-grow-1 text-start rounded-pill px-4 text-muted" routerLink="/post">
                     What are you working on, Andrei?
                 </button>
@@ -12,43 +13,82 @@
 
             <!-- Feed List -->
             @for (post of UserPost; track post.id_post) {
-                <div class="pf-card mb-4 overflow-hidden">
-                    <!-- Post Header -->
-                    <div class="p-3 d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center gap-2">
-                            @if(post.profile_picture_id){
-                                <img [ngSrc]="getProfilePictureUrl(post.profile_picture_id) "
-                        alt="Profile picture" class="rounded-circle border border-4 border-white shadow" width="120"
-                        height="120">
-                            <div>
-                                <h6 class="mb-0 fw-bold">{{post.username}}</h6>
-                                <small class="text-muted">{{getRelative_time(post.create_at)}}</small>
-                            
-                            </div> 
-                            }@else{
-
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Andrei" alt="Default profile picture"
-                        class="rounded-circle border border-4 border-white shadow" width="120" height="120">
+            <div class="pf-card mb-4 overflow-hidden">
+                <!-- Post Header -->
+                <div class="p-3 d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        @if(post.profile_picture_id){
+                        <img [ngSrc]="getProfilePictureUrl(post.profile_picture_id) " alt="Profile picture"
+                            class="rounded-circle border border-4 border-white shadow" width="120" height="120">
                         <div>
-                                <h6 class="mb-0 fw-bold">{{post.username}}</h6>
-                                <small class="text-muted">{{getRelative_time(post.create_at)}}</small>
-                            
-                            </div> 
-                            }
-                            
-                          
-                        </div>
-                        <button class="btn btn-link text-dark"><i class="bi bi-three-dots"></i></button>
-                    </div>
+                            <h6 class="mb-0 fw-bold">{{post.username}}</h6>
+                            <small class="text-muted">{{getRelative_time(post.create_at)}}</small>
 
-                    <!-- Post Body -->
-                    <div class="px-3 pb-3">
-                        <h3><strong>{{ post.title }}</strong></h3>
-                        <p>{{ post.content }}</p>
-                        @if(post.document_id){
-                            <img [ngSrc]="getPostContent(post.document_id)">
+                        </div>
+                        }@else{
+
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Andrei" alt="Default profile picture"
+                            class="rounded-circle border border-4 border-white shadow" width="120" height="120">
+                        <div>
+                            <h6 class="mb-0 fw-bold">{{post.username}}</h6>
+                            <small class="text-muted">{{getRelative_time(post.create_at)}}</small>
+
+                        </div>
+                        }
+
+
+                    </div>
+                    <button class="btn btn-link text-dark"><i class="bi bi-three-dots"></i></button>
+                </div>
+
+                <!-- Post Body -->
+                <div class="px-3 pb-3">
+                    <h3><strong>{{ post.title }}</strong></h3>
+                    <p>{{ post.content }}</p>
+                    @if(post.document_id){
+                    <img [ngSrc]="getPostContent(post.document_id)">
+                    <div
+                        class="file-download-card d-flex align-items-center justify-content-between p-3 border rounded-3 bg-white shadow-sm">
+                        <!-- Secțiunea cu iconiță și detalii fișier -->
+                        <div class="d-flex align-items-center me-3 text-truncate">
+                            <!-- Iconiță Document (SVG inclus direct, nu necesită librării externe) -->
+                            <div
+                                class="file-icon-box bg-primary-subtle text-primary rounded-2 d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                    <path
+                                        d="M4.5 10.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5" />
+                                </svg>
+                            </div>
+
+                            <!-- Nume fișier și detalii secundare -->
+                            <div class="text-truncate">
+                                <h6 class="mb-0 text-truncate fw-semibold text-dark"
+                                    title="raport_financiar_anual.docx">
+                                    raport_financiar_anual.docx
+                                </h6>
+                                <small class="text-muted">2.4 MB</small>
+                            </div>
+                        </div>
+
+                        <!-- Buton de Download -->
+                        <button type="button"
+                            class="btn btn-outline-primary btn-sm flex-shrink-0 d-flex align-items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                <path
+                                    d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                            </svg>
+                            <span>Descarcă</span>
+                        </button>
+                    </div>
                     }
-<!--        
+                    
+                    <!--        
                         <div class="post-attachment p-4 rounded bg-light border d-flex align-items-center gap-3">
                             <i class="bi bi-file-earmark-zip-fill fs-2 text-primary"></i>
                             <div>
@@ -57,20 +97,20 @@
                             </div>
                             <button class="btn btn-polifans btn-sm ms-auto">Download</button>
                         </div> -->
-                    </div>
+                </div>
 
-                    <!-- Post Actions -->
-                    <div class="p-2 border-top d-flex justify-content-around">
-                        <button class="btn btn-hover flex-grow-1"><i class="bi bi-heart me-2"></i> Like</button>
-                        <button class="btn btn-hover flex-grow-1"><i class="bi bi-chat-left me-2"></i> Comment</button>
-                        <button class="btn btn-hover flex-grow-1"><i class="bi bi-share me-2"></i> Share</button>
-                    </div>
+                <!-- Post Actions -->
+                <div class="p-2 border-top d-flex justify-content-around">
+                    <button class="btn btn-hover flex-grow-1"><i class="bi bi-heart me-2"></i> Like</button>
+                    <button class="btn btn-hover flex-grow-1"><i class="bi bi-chat-left me-2"></i> Comment</button>
+                    <button class="btn btn-hover flex-grow-1"><i class="bi bi-share me-2"></i> Share</button>
                 </div>
+            </div>
             } @empty {
-                <div class="col-12 text-center py-5">
-                    <i class="bi bi-folder2-open display-4 text-muted"></i>
-                    <p class="text-muted mt-2">No projects shared yet.</p>
-                </div>
+            <div class="col-12 text-center py-5">
+                <i class="bi bi-folder2-open display-4 text-muted"></i>
+                <p class="text-muted mt-2">No projects shared yet.</p>
+            </div>
             }
 
         </div>
