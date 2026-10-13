@@ -9,6 +9,7 @@ export interface UserPost {
   id_post: string;
   title: string;
   content: string | null;
+  document_id :string | null;
   create_at: string | "null";
   username:string | null;
   profile_picture_id:string | null;
