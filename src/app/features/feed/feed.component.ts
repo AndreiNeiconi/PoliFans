@@ -34,6 +34,9 @@ export class FeedComponent {
   getProfilePictureUrl(imageId: string): string {
   return `${environment.apiUrl}/imag-url-system/${imageId}`;
 }
+  getpostContent(contentid:string):string{
+    return `${environment.apiUrl}/imag-url-system/${contentid}`;
+  }
   getRelative_time(timestamp: string | null): string {
   if (!timestamp) return '';
 
