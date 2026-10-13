@@ -22,14 +22,23 @@ export class PostCreationService {
   private readonly apiUrl = `${environment.apiUrl}`
   constructor(private http:HttpClient ) { }
   
-  create_post(post:PostComponent){
+  create_media_post(post:PostComponent){
    const token = localStorage.getItem('access_token');
-    return this.http.post(`${this.apiUrl}/post`,post,{
+    return this.http.post(`${this.apiUrl}/media-post`,post,{
       headers: new HttpHeaders({
     Authorization: `Bearer ${token}`,
   }),
     });
   }
+  create_post(post:PostComponent){
+   const token = localStorage.getItem('access_token');
+    return this.http.post(`${this.apiUrl}/media-post`,post,{
+      headers: new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+  }),
+    });
+  }
+  
   get_post() {
   const token = localStorage.getItem('access_token');
 

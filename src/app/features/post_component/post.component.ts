@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FileUploadService } from '../../../services/file-upload.service';
 import { ProfileService } from '../../../services/profile-service.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class PostCreatorComponent {
   postData = {
     title: '',
     content: '',
-    content_id: '',
+    document_id: '',
     type: 'personal' // Default value
   };
 
@@ -68,35 +69,22 @@ export class PostCreatorComponent {
     return 'bi-file-earmark';
   }
 
-  submitPost(file:File[]){
+  async submitPost(file:File[]){
     if (this.isLoading) return;
 
     this.isLoading = true;
     const formData = new FormData
-    
-    formData.append('purpose' ,'post_image' );
-    formData.append('file', file[0]);
-    this.FileUploadService.uploadFile(formData).subscribe({
-          next: (response) => {
-            console.log('Upload successful:', response);
-            this.postData.content_id = response;
-            // Handle the response as needed
-          },
-          error: (err) => {
-            console.error('Upload error:', err);
-            alert(`Failed to upload file "${file[0].name}".`);
-          }
-        });
-
-    return this.postCreationService.create_post(this.postData).subscribe(
+    if(file[0] == null){
+      return this.postCreationService.create_post(this.postData).subscribe(
       {
         next: (response) => {
           console.log('Post succesfuly',response);
+          console.log(this.postData.document_id)
 
           this.postData = {
             title: '',
             content: '',
-            content_id: '',
+            document_id: '',
             type:'personal'
           }
           this.isLoading = false;
@@ -110,6 +98,53 @@ export class PostCreatorComponent {
       }
       
     );
+    }
+    else{
+
+    
+    formData.append('purpose' ,'post_image' );
+    formData.append('file', file[0]);
+    
+    try{
+      const response =await firstValueFrom(this.FileUploadService.uploadFile(formData))
+      this.postData.document_id = response.id;
+    }
+    catch(err){
+      console.error('Eroare:', err);
+      alert("Fiserul nu a putut fii incarcat . Incearca din nou")
+
+    }
+
+    return this.postCreationService.create_post(this.postData).subscribe(
+      {
+        next: (response) => {
+          console.log('Post succesfuly',response);
+          console.log(this.postData.document_id)
+
+          this.postData = {
+            title: '',
+            content: '',
+            document_id: '',
+            type:'personal'
+          }
+          this.isLoading = false;
+
+        },
+        error:(err)=>{
+          console.log('Post creation failed',err);
+          alert("Crearea postului a esuat incearca din nou")
+          this.isLoading = false;
+
+        }
+      }
+      
+    );
+
+  }
+
+    
+
+    
     
   }
 }
