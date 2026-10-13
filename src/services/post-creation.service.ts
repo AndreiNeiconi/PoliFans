@@ -13,6 +13,7 @@ export interface UserPost {
   create_at: string | "null";
   username:string | null;
   profile_picture_id:string | null;
+  mime_type:string | null;
 }
 @Injectable({
   providedIn: 'root'

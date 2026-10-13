@@ -45,8 +45,8 @@
                 <div class="px-3 pb-3">
                     <h3><strong>{{ post.title }}</strong></h3>
                     <p>{{ post.content }}</p>
-                    @if(post.document_id){
-                    <img [ngSrc]="getProfilePictureUrl(post.document_id)" alt="imag" width="400" height="400">
+                    @if(post.document_id && (post.mime_type == "image/jpeg" || post.mime_type == "image/png")){
+                    <img [ngSrc]="getPostContent(post.document_id)" alt="imag" width="400" height="400">
                     <p>{{post.document_id}}</p>
                     <div
                         class="file-download-card d-flex align-items-center justify-content-between p-3 border rounded-3 bg-white shadow-sm">
