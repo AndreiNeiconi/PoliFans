@@ -45,8 +45,8 @@
                     <div class="px-3 pb-3">
                         <h3><strong>{{ post.title }}</strong></h3>
                         <p>{{ post.content }}</p>
-                        @if(post.document_id != ''){
-                            <img [ngSrc]="getProfilePictureUrl(post.document_id)">
+                        @if(post.document_id){
+                            <img [ngSrc]="getPostContent(post.document_id)">
                     }
 <!--        
                         <div class="post-attachment p-4 rounded bg-light border d-flex align-items-center gap-3">
