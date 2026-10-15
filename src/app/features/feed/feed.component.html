@@ -7,7 +7,7 @@
                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User" class="rounded-circle" width="45"
                     alt="Avatar">
                 <button class="btn btn-light flex-grow-1 text-start rounded-pill px-4 text-muted" routerLink="/post">
-                    What are you working on, {{true}}?
+                    What are you working on?
                 </button>
             </div>
 
@@ -72,12 +72,12 @@
                                     title="document_title">
                                     {{post.original_name}}
                                 </h6>
-                                <small class="text-muted">2.4 MB</small>
                             </div>
                         </div>
 
                         <!-- Buton de Download -->
-                        <button type="button" (click)="getPostContent(post.document_id)"
+                        <a
+                            [href]="getPostContent(post.document_id)" target="_blank" rel="noopener noreferrer"
                             class="btn btn-outline-primary btn-sm flex-shrink-0 d-flex align-items-center gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 viewBox="0 0 16 16">
@@ -86,8 +86,8 @@
                                 <path
                                     d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
                             </svg>
-                            <span  >Descarcă</span>
-                        </button>
+                            <span>Download</span>
+                        </a>
                     </div>
                     }
                     @else {
