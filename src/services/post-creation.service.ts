@@ -14,6 +14,7 @@ export interface UserPost {
   username:string | null;
   profile_picture_id:string | null;
   mime_type:string | null;
+  original_name:string | null;
 }
 @Injectable({
   providedIn: 'root'
