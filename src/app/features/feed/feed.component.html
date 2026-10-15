@@ -7,7 +7,7 @@
                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User" class="rounded-circle" width="45"
                     alt="Avatar">
                 <button class="btn btn-light flex-grow-1 text-start rounded-pill px-4 text-muted" routerLink="/post">
-                    What are you working on, Andrei?
+                    What are you working on, {{true}}?
                 </button>
             </div>
 
@@ -48,7 +48,8 @@
                     @if(post.document_id && (post.mime_type == "image/jpeg" || post.mime_type == "image/png")){
                     <img [ngSrc]="getPostContent(post.document_id)" alt="imag" width="400" height="400">
                     }
-                    @else {
+                    
+                    @else if(post.document_id && (post.mime_type == "application/pdf" || post.mime_type == "application/msword" || post.mime_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || post.mime_type == "text/plain") ){
                     <div
                         class="file-download-card d-flex align-items-center justify-content-between p-3 border rounded-3 bg-white shadow-sm">
                         <!-- Secțiunea cu iconiță și detalii fișier -->
@@ -88,6 +89,9 @@
                             <span>Descarcă</span>
                         </button>
                     </div>
+                    }
+                    @else {
+                        
                     }
                     
                     <!--        
