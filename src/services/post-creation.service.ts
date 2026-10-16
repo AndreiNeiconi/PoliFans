@@ -65,7 +65,7 @@ export class PostCreationService {
   const token = localStorage.getItem('access_token');
 
   return this.http.delete<void>(
-    `${this.apiUrl}/posts/${postId}`,
+    `${this.apiUrl}/post/${postId}`,
     {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,

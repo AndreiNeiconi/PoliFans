@@ -62,9 +62,9 @@ export class FeedComponent {
 
   return formatter.format(-Math.floor(elapsedMs / 86_400_000), 'day');
 }
-delete_post(documentid:string){
+delete_post(postid:string){
 
-    return this.postCreation.deletePost(documentid).subscribe(
+    return this.postCreation.deletePost(postid).subscribe(
       {
     next: (res) => {
       console.log("Post delet succesfuly")
