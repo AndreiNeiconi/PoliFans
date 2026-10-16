@@ -63,16 +63,23 @@ export class FeedComponent {
   return formatter.format(-Math.floor(elapsedMs / 86_400_000), 'day');
 }
 delete_post(postid:string){
-
-    return this.postCreation.deletePost(postid).subscribe(
+    const response = window.confirm("Are you sure want to delete the post?")
+    if(response){
+      return this.postCreation.deletePost(postid).subscribe(
       {
     next: (res) => {
-      console.log("Post delet succesfuly")
+      console.log("Post delet succesfuly",res)
     },
     error: err => {
       console.error('Failed to delete post', err);
     }
   });
+    }
+    else{
+      console.log("post delete cancel")
+      return 0;
+    }
+    
     
   
 }
