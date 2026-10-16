@@ -64,7 +64,16 @@ export class FeedComponent {
 }
 delete_post(documentid:string){
 
-    return this.postCreation.deletePost(documentid)
+    return this.postCreation.deletePost(documentid).subscribe(
+      {
+    next: (res) => {
+      console.log("Post delet succesfuly")
+    },
+    error: err => {
+      console.error('Failed to delete post', err);
+    }
+  });
+    
   
 }
 }
