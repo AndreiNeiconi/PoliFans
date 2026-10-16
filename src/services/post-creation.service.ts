@@ -64,6 +64,8 @@ export class PostCreationService {
   deletePost(postId: string) {
   const token = localStorage.getItem('access_token');
 
+  console.log(postId);
+
   return this.http.delete<void>(
     `${this.apiUrl}/post/${postId}`,
     {
