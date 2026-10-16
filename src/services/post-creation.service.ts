@@ -23,6 +23,7 @@ export interface UserPost {
 
 export class PostCreationService {
   private readonly apiUrl = `${environment.apiUrl}`
+  private readonly token = localStorage.getItem('access_token')
   constructor(private http:HttpClient ) { }
   
   create_media_post(post:PostComponent){
@@ -59,7 +60,19 @@ export class PostCreationService {
       Authorization: `Bearer ${token}`,
     }),
   });
-  } 
+  }
+  deletePost(postId: string) {
+  const token = localStorage.getItem('access_token');
+
+  return this.http.delete<void>(
+    `${this.apiUrl}/posts/${postId}`,
+    {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    }
+  );
+}
 }
 
 

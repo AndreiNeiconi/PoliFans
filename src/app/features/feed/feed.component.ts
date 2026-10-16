@@ -62,4 +62,10 @@ export class FeedComponent {
 
   return formatter.format(-Math.floor(elapsedMs / 86_400_000), 'day');
 }
+delete_post(documentid:string){
+  if(!documentid){
+
+    return this.postCreation.deletePost(documentid)
+  }
+}
 }
